@@ -28,6 +28,39 @@ def home():
     return render_template("home.html", users=users)
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        #  creating date varibale
+        time_created = time_to_string()
+        #  check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        #  check if email already exists in db
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email")})
+
+        if existing_user or existing_email:
+            flash("Username or Email already in use",  "category1")
+            return redirect(url_for('register'))
+
+        register_user = {
+            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(
+                request.form.get("password")),
+            "time_created": time_created
+        }
+        mongo.db.users.insert_one(register_user)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration succesful", "category1")
+        return redirect(url_for("home", username=session["user"]))
+
+    return render_template("register.html")
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()
