@@ -43,7 +43,6 @@
         <!-- mobile sidenav -->
         <ul class="sidenav grey lighten-5" id="mobile-demo">
             <div class="li-wrapper">
-                <li><a class="black-text" href="{{ url_for('home')}}"><i class="fas fa-star green-text"></i></a></li>
                 <li><a class="black-text" href="{{ url_for('home')}}">Home</a></li>
                 <li><a class="black-text" href="#">About</a></li>
             {% if session.user %}
@@ -56,10 +55,96 @@
             </div>
         </ul>
     </header>
-
-
         {% block content %}
         {% endblock %}
+        <footer class="page-footer grey darken-4">
+            <div class="wrapper-container">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col s12">
+                                <h5 class="white-text footer-heading"><i
+                                        class="fas fa-star green-text"></i><span>CustomerReviews</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <p class="grey-text text-lighten-4">Whether you need reviews for your services, products, or
+                            business locations — Customer Reviews help you drive more traffic from paid and organic search
+                            results, and make the purchasing decision easy once those shoppers get to your site..</p>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col s12">
+                                <h5 class="white-text footer-heading">Join Us on Social Media</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ul>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="sass.html" target="_blank"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                </div>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="badges.html"><i class="fab fa-twitter"></i></a></li>
+                                </div>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="collapsible.html"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                </div>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="mobile.html"><i class="fab fa-instagram"></i></a></li>
+                                </div>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="mobile.html"><i class="fab fa-pinterest-p"></i></a></li>
+                                </div>
+                                <div class="col m2 s4">
+                                    <li><a class="white-text" href="mobile.html"><i class="fab fa-pinterest-p"></i></a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 footer-links">
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="white-text footer-heading">Navigation</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <div class="col m3 s6">
+                                <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+                            </div>
+                            <div class="col m3 s6">
+                                <li><a class="white-text" href="#">About</a></li>
+                            </div>
+                            {% if session.user %}
+                                <div class="col m3 s6">
+                                    <li><a class="white-text" href="#">Profile</a></li>
+                                </div>
+                                <div class="col m3 s6">
+                                    <li><a class="white-text" href="#">Logout</a></li>
+                                </div>
+                            {% else %}
+                                <div class="col m3 s6">
+                                    <li><a class="white-text" href="#">Register</a></li>
+                                </div>
+                                <div class="col m3 s6">
+                                    <li><a class="white-text" href="#">Login</a></li> 
+                                </div>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="footer-copyright grey darken-3">
+                <div class="container">
+                    © <span id="copyright"></span> Copyright <i class="fas fa-star green-text"></i>CustomerReviews
+                </div>
+            </div>
+        </footer>
   
     <!-- JQuerie -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
