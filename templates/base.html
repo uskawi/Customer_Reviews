@@ -20,7 +20,43 @@
 </head>
 
 <body>
-   <h1>fdggdsgg</h1>
+    <header>
+        <nav>
+            <!-- top navbar -->
+            <div class="nav-wrapper grey darken-4">
+                <a href="{{ url_for('home') }}" class="brand-logo"><i
+                        class="fas fa-star"></i><span>CustomerReviews</span></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars toggle"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    {% if session.user %}
+                        <li><a href="#">Logout</a></li>
+                        <li><a href="#"><i class="fas fa-user"></i></a></li>
+                    {% else %}
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <!-- mobile sidenav -->
+        <ul class="sidenav grey lighten-5" id="mobile-demo">
+            <div class="li-wrapper">
+                <li><a class="black-text" href="{{ url_for('home')}}"><i class="fas fa-star green-text"></i></a></li>
+                <li><a class="black-text" href="{{ url_for('home')}}">Home</a></li>
+                <li><a class="black-text" href="#">About</a></li>
+            {% if session.user %}
+                <li><a class="black-text" href="#">Logout</a></li>
+                <li><a class="black-text bottom-border" href="#">Profile</a></li>
+            {% else %}
+                <li><a class="black-text" href="#">Register</a></li>
+                <li><a class="black-text bottom-border" href="#">Login</a></li>
+            {% endif %}
+            </div>
+        </ul>
+    </header>
+
 
         {% block content %}
         {% endblock %}
