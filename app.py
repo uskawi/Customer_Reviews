@@ -28,6 +28,19 @@ def home():
     return render_template("home.html", users=users)
 
 
+def time_to_string():
+    '''
+    convert datetime object to string using datetime.strftime()
+    this part of code is credited to thispointer.com
+    url ("https://thispointer.com/python-how-to-convert
+    -datetime-object-to-string-using-datetime-strftime/")
+    '''
+    date_time_obj = datetime.now()
+    time_str = date_time_obj.strftime("%d-%b-%Y %H:%M")
+
+    return time_str
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
