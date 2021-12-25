@@ -55,8 +55,24 @@
             </div>
         </ul>
     </header>
-        {% block content %}
-        {% endblock %}
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages(category_filter=["category1"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                   <div class="row">
+                       <h4 class=" white-text center-align light-blue accent-4">
+                           {{ message }}
+                       </h4>
+                   </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+{% block content %}
+{% endblock %}
+
         <footer class="page-footer grey darken-4">
             <div class="wrapper-container">
                 <div class="row">
