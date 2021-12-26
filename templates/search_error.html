@@ -16,6 +16,17 @@
     </div>
 </div>
 <div>
+    {% with messages = get_flashed_messages(category_filter=["category2"]) %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="row error-message">
+               <h4 class=" black-text center-align">
+                   {{ message }}
+               </h4>
+           </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
 
 </div>
