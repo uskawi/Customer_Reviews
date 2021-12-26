@@ -87,6 +87,13 @@ def login():
     return render_template("login.html")
 
 
+@app.route('/logout')
+def logout():
+    flash("You have been logged out",  "category1")
+    session.pop("user")
+    return redirect(url_for("login"))
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()

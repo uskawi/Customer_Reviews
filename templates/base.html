@@ -28,14 +28,14 @@
                         class="fas fa-star"></i><span>CustomerReviews</span></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars toggle"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="#">About</a></li>
                     {% if session.user %}
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
                         <li><a href="#"><i class="fas fa-user"></i></a></li>
                     {% else %}
                         <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -46,11 +46,11 @@
                 <li><a class="black-text" href="{{ url_for('home')}}">Home</a></li>
                 <li><a class="black-text" href="#">About</a></li>
             {% if session.user %}
-                <li><a class="black-text" href="#">Logout</a></li>
+                <li><a class="black-text" href="{{ url_for('logout') }}">Logout</a></li>
                 <li><a class="black-text bottom-border" href="#">Profile</a></li>
             {% else %}
                 <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
-                <li><a class="black-text bottom-border" href="#">Login</a></li>
+                <li><a class="black-text bottom-border" href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
             </div>
         </ul>
@@ -140,14 +140,14 @@
                                     <li><a class="white-text" href="#">Profile</a></li>
                                 </div>
                                 <div class="col m3 s6">
-                                    <li><a class="white-text" href="#">Logout</a></li>
+                                    <li><a class="white-text" href="{{ url_for('logout') }}">Logout</a></li>
                                 </div>
                             {% else %}
                                 <div class="col m3 s6">
                                     <li><a class="white-text" href="{{ url_for('register') }}">Register</a></li>
                                 </div>
                                 <div class="col m3 s6">
-                                    <li><a class="white-text" href="#">Login</a></li> 
+                                    <li><a class="white-text" href="{{ url_for('login') }}">Login</a></li> 
                                 </div>
                             {% endif %}
                         </ul>
