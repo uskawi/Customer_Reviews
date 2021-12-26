@@ -107,6 +107,32 @@ def profile():
         "profile.html", user=user)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("company-name")
+    company = mongo.db.company.find_one(
+           {"company_name": query.lower()})
+    session["company_name"] = query.lower()
+    if company:
+        company_name = session["company_name"]
+        review = list(mongo.db.review.find(
+            {"company_name": company_name}))
+        if review:
+            company_score = avrage_score(review, "score")
+            return render_template("home.html", review=review,
+                                   company_score=company_score,
+                                   company=company,
+                                   company_name=session["company_name"])
+
+        else:
+            return render_template("home.html", company=company)
+
+    flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
+          "category2")
+    return render_template("search_error.html")
+
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()
