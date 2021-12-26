@@ -157,6 +157,23 @@ def add_review():
     return render_template("add_review.html")
 
 
+@app.route("/add_company", methods=["POST", "GET"])
+def add_company():
+    # creating date varibale
+    time_created = time_to_string()
+    if session['user'] and request.method == "POST":
+        added_company = {
+            "username": session['user'],
+            "company_name": request.form.get("company-name"),
+            "date_created": time_created,
+            "description": request.form.get("description")
+        }
+        mongo.db.company.insert_one(added_company)
+        flash("Review Added successfully.", "category1")
+        return redirect(url_for("add_company"))
+    return render_template("add_company.html")
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()

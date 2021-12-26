@@ -292,25 +292,25 @@ nav ul li:hover {
     margin: 90px 0;
 }
 
-/* add review page */
+/* add review page / add company page */
 
-.row .review-form {
+.row .review-form, .row .company-form {
     padding-top: 20px;
     margin-bottom: 20px;
 
 }
 
-#score, #title, #review-text {
+#score, #title, #review-text, #company-name {
     padding-left: 8px;
     border: 1px solid #9e9e9e;
     border-radius: 2px;
 }
 
-#review-text {
+#review-text, #description {
     height: 120px;
 }
 
-.review-form label {
+.review-form label, .company-form label {
     font-size: 14px;
     font-weight: 500;
     position: relative;

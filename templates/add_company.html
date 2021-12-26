@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align  light-blue-text text-accent-4">Add Company</h3>
+<div class="row">
+    <!-- Review form -->
+    <form class="col m8 s10 offset-m2 grey lighten-5 offset-s1 company-form " method="POST" action="{{ url_for('add_company') }}">
+        <!--comapny name -->
+        <div class="row">
+            <div class="col m8 s10 offset-m2 offset-s1">
+                <label for="company_name">Company_name</label>
+                <input id="company-name" type="text" name="company-name" minlength="1" maxlength="50" class="validate" placeholder="Add company name" required>               
+            </div>
+        </div>
+        <!-- description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="description">Comapny Description</label>
+                <textarea  name="description" id="description" cols="30" rows="100"  minlength="10" maxlength="1000"  class="validate" placeholder="Add comapny description" required></textarea>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+                <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">Add Company
+                </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
