@@ -44,7 +44,7 @@
                     <div class="add-review-btn">
                         <p class="blue-text">Add review</p>
                         <button id="add-review-button" class="btn light-blue accent-4" type="button">
-                            <a class="white-text" href="#"> <span>Add A Review</span> <i class="fas fa-sign-in-alt"></i></a></button>
+                            <a class="white-text" href="{{ url_for('add_review') }}"> <span>Add A Review</span> <i class="fas fa-sign-in-alt"></i></a></button>
                     </div>
 
                 {% else %}
@@ -53,7 +53,7 @@
                         <p class="blue-text">Add review</p>
                         <button id="add-review-button" class="btn light-blue accent-4" type="button"
                             onClick="alert('Please login to write a review')">
-                            <a class="white-text" href="#"> <span>Add A Review</span><i class="fas fa-sign-in-alt review-in-icon"></i></a></button>
+                            <a class="white-text" href="{{ url_for('login') }}"> <span>Add A Review</span><i class="fas fa-sign-in-alt review-in-icon"></i></a></button>
                     </div>
 
                 {% endif %}

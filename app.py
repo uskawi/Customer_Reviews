@@ -132,6 +132,27 @@ def search():
     return render_template("search_error.html")
 
 
+@app.route("/add_review", methods=["POST", "GET"])
+def add_review():
+    # creating date varibale
+    time_created = time_to_string()
+    if session['user'] and request.method == "POST":
+        added_review = {
+            "username": session['user'],
+            "company_name": session["company_name"],
+            "time_created": time_created,
+            "score": int(request.form.get("score")),
+            "review_content": request.form.get("review-text"),
+            "review_title": request.form.get("title")
+        }
+        mongo.db.review.insert_one(added_review)
+        flash("Review Added successfully.", "category1")
+        return redirect(url_for("add_review"))
+
+
+    return render_template("add_review.html")
+
+
 
 def time_to_string():
     '''

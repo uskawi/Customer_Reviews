@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align  light-blue-text text-accent-4">Add Review</h3>
+<div class="row">
+    <!-- Review form -->
+    <form class="col m8 s10 offset-m2 grey lighten-5 offset-s1 review-form " method="POST" action="{{ url_for('add_review') }}">
+        <!-- score -->
+        <div class="row">
+            <div class="col m8 s10 offset-m2 offset-s1">
+                <label for="score">Score</label>
+                <input id="score" type="number" name="score" minlength="1" maxlength="2" min="1" max="10" class="validate" placeholder="Add your rating from 1 to 10" required>               
+            </div>
+        </div>
+        <!-- title -->
+        <div class="row">
+            <div class="col m8 s10 offset-m2 offset-s1">
+                <label for="title">title</label>
+                <input id="title" type="text" name="title" class="validate" placeholder="Write the title of your review" required>
+            </div>
+        </div>
+        <!-- review content -->
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="review-text">Review</label>
+                <textarea  name="review-text" id="review-text" cols="30" rows="100"  minlength="40" maxlength="1000"  class="validate" placeholder="Write your review her" required></textarea>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+                <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">post Review
+                </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
