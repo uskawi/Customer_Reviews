@@ -56,7 +56,7 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration succesful", "category1")
-        return redirect(url_for("home", username=session["user"]))
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
 
@@ -75,7 +75,7 @@ def login():
                 flash("Welcome, {}".format(existing_user["username"]),
                       "category1")
                 return redirect(url_for(
-                    "home", username=session["user"]))
+                    "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Email and/or Password")
@@ -94,6 +94,19 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    # grab the session user's from db
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+    if session["user"]:
+        return render_template(
+            "profile.html", user=user,)
+
+    return render_template(
+        "profile.html", user=user)
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()
@@ -105,6 +118,21 @@ def time_to_string():
     time_str = date_time_obj.strftime("%d-%b-%Y %H:%M")
 
     return time_str
+
+
+def avrage_score(arr, ind):
+    '''
+    Calculate The average sum of all scores
+    '''
+    count = 0
+    total = 0
+    if len(arr) > 0:
+        for item in arr:
+            if item[ind]:
+                total += item[ind]
+                count += 1
+
+        return round(total/count, 1)
 
 
 if __name__ == "__main__":
