@@ -169,7 +169,7 @@ def add_company():
             "description": request.form.get("description")
         }
         mongo.db.company.insert_one(added_company)
-        flash("Review Added successfully.", "category1")
+        flash("Company Added successfully.", "category1")
         return redirect(url_for("add_company"))
     return render_template("add_company.html")
 

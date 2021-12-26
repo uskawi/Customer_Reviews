@@ -323,7 +323,7 @@ nav ul li:hover {
 .business-banner {
     width: 100%;
     height: 250px;
-    background-color: rgba(25, 211, 211, 0.74);
+    background-color: rgba(176, 107, 182, 0.74);
     text-align: center;
     color: rgb(51, 53, 52);
 }
@@ -337,6 +337,7 @@ nav ul li:hover {
 
 .business-banner h1 {
     margin: 0;
+    color: #fff;
 }
 
 /* Add a company */
@@ -345,7 +346,7 @@ nav ul li:hover {
     width: 100%;
     height: 100px;
     text-align: center;
-    background-color: rgba(25, 211, 211, 0.74);
+    background-color: rgba(176, 107, 182, 0.74);
 }
 
 .add_company_wrapper {
@@ -362,6 +363,22 @@ nav ul li:hover {
     color: #fff;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.content-text-item {
+    border-bottom: 1px solid rgba(176, 107, 182, 0.74);
+}
+
+.content-text hr {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid rgba(176, 107, 182, 0.74);
+    margin-bottom: 20px;
+}
+
+.content-text-last {
+    margin: 0;
+    padding-bottom: 20px;
 }
 
 /* content-text */
