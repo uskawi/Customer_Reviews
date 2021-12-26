@@ -285,6 +285,13 @@ nav ul li:hover {
     border: 1px solid #7c7b7bde;
 }
 
+/* error page */
+
+.error-message {
+    width: 100%;
+    margin: 90px 0;
+}
+
 
 
 /* footer */
