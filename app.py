@@ -28,6 +28,11 @@ def home():
     return render_template("home.html", users=users)
 
 
+@app.route("/for_business")
+def for_business():
+    return render_template("for_business.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -149,9 +154,7 @@ def add_review():
         flash("Review Added successfully.", "category1")
         return redirect(url_for("add_review"))
 
-
     return render_template("add_review.html")
-
 
 
 def time_to_string():

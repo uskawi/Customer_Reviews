@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="business-banner">
+    <div class="for_business-heading">
+        <h1>Turn reviews into traffic, sales, and customer loyalty.</h1>
+    </div>
+</div>
+<div class="Add_company">
+    <div class="add_company_wrapper">
+        <a href="{{ url_for('add_company')}}">Add Your Company</a>
+    </div>
+</div>
+<div class="content-text grey lighten-5">
+    <h2 class="center-align">Benefits of Adding your business.</h2>
+    <div class="row">
+        <div class="col s12 m6 content-text-item">
+            <h5>Reviews onsite take sales to new heights.</h5>
+            <p>Collecting and displaying reviews across your website has never been so easy. Sit back, relax, and watch
+                your online sales and organic traffic skyrocket.</p>
+        </div>
+        <div class="col s12 m6 content-text-item">
+            <h5>Keep your customers coming back for life.</h5>
+            <p>You've built a trusted brand. You're attracting more customers. Now you can apply practical learnings
+                from your review data to drive customer loyalty.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6 content-text-item">
+            <h5>Star ratings in the right place, at the right time.</h5>
+            <p>Whether you need reviews for your services, products, or business locations — Customer reviews help
+                you drive more traffic from paid and organic search results, and make the purchasing decision easy
+                once those shoppers get to your site.</p>
+        </div>
+        <div class="col s12 m6  content-text-item">
+            <h5>Climb to the top of search.</h5>
+            <p> Earn stars in Google that drive more visitors to your site from both organic and paid search, with
+                Trustpilot, an official Google review partner.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s11 m8 offset-s1 offset-m2 content-text-last">
+            <p>"One of our biggest challenges has been our changing customer demographics. We're moving from being a purely catalog company to an omnichannel. Trustpilot helps with understanding these new customers and their expectations."</p>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
