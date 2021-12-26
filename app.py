@@ -61,6 +61,32 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        #  check if email already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email")})
+        if existing_user:
+            # check the password matches user input
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = existing_user["username"]
+                flash("Welcome, {}".format(existing_user["username"]),
+                      "category1")
+                return redirect(url_for(
+                    "home", username=session["user"]))
+            else:
+                # invalid password match
+                flash("Incorrect Email and/or Password")
+        else:
+            # username doesn't exist
+            flash("Incorrect Email and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()

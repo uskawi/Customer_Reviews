@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align  light-blue-text text-accent-4">Log In</h3>
+<div class="row">
+<!-- login form -->
+<form class="col m8 s10 offset-m2 offset-s1 form-border" method="POST" action="{{ url_for('login') }}">
+    <!-- email -->
+    <div class="row">
+        <div class="input-field col col s12">
+            <i class="fas fa-envelope prefix light-blue-text taxt-accent-4"></i>
+            <input id="email" type="email" name="email" class="validate" required>
+            <label for="email">Email</label>
+        </div>
+    </div>
+    <!-- password -->
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="fas fa-lock prefix light-blue-text taxt-accent-4"></i>
+            <input id="password" type="password" name="password" minlength="6" maxlength="14" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+            <label for="password">Password</label>
+        </div>
+    </div>
+    <!-- submit button -->
+    <div class="row">
+        <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">Log In
+            <i class="fas fa-sign-in-alt"></i></i>
+        </button>
+    </div>
+</form>
+</div>
+<div class="row">
+    <div class="col m8 s10 offset-m2 offset-s1 center-align">
+        <p> No Account? <a href="#" class="light-blue-text text-accent-4">Create One!</a></p>
+    </div>
+</div>
+
+
+{% endblock %}
