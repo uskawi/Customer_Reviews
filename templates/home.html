@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="header-image">
-    <form class="serach-form" method="POST" action="">
+    <form class="serach-form" method="POST" action="{{url_for('search')}}">
         <label class="search-bar-label" name="company-name" for="company-name">Company Name</label>
         <div class="input-wrapper">
             <input type="text" id="company-name" name="company-name">
@@ -87,7 +87,7 @@
                         </div>
                         <div class="row">
                             <div class="col s10 offset-s1 review-content">
-                                <p>{{ set.content }}</p>
+                                <p>{{ set.review_content }}</p>
                             </div>
                         </div>
                         <hr>
