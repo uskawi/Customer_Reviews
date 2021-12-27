@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h3 class="center-align  light-blue-text text-accent-4">Edit Review</h3>
+<div class="row">
+    <!-- edit Review form -->
+    <form class="col m8 s10 offset-m2 grey lighten-5 offset-s1 review-form " method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
+        <!-- score -->
+        <div class="row">
+            <div class="col m8 s10 offset-m2 offset-s1">
+                <label for="score">Score</label>
+                <input id="score" type="number" name="score" value="{{ review.score }}"minlength="1" maxlength="2" min="1" max="10" class="validate" required>               
+            </div>
+        </div>
+        <!-- title -->
+        <div class="row">
+            <div class="col m8 s10 offset-m2 offset-s1">
+                <label for="title">title</label>
+                <input id="title" type="text" value="{{ review.review_title }}" name="title" class="validate"  required>
+            </div>
+        </div>
+        <!-- review content -->
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="review-text">Review</label>
+                <textarea  name="review-text"  id="review-text" cols="30" rows="100"  minlength="40" maxlength="1000"  class="validate" required>{{- review.review_content -}}</textarea>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+                <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">Post Review
+                </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

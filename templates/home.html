@@ -27,7 +27,7 @@
                 <div class="text-darken-4 search-company-results">
                     <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews</p>
                     <p>Company Name:<span class="upper-case">{{ company.company_name }}</span></p>
-                    {% if review|length > 0 %}
+                    {% if reviews|length > 0 %}
                         <p> Total Score:<span class="upper-case">{{ company_score }}/10</span></p>
 
                     {% else %}
@@ -61,40 +61,40 @@
                 </div>
             </div>
 
-        {% if review|length > 0 %}
-            {% for set in review %}
+        {% if reviews|length > 0 %}
+            {% for review in reviews %}
 
                 <div class="row small-top-margin">
                     <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 review">
                         <div class="row">
                             <div class="col s10 offset-s1 black-text">
-                                <h5><i class="fas fa-user"></i>{{ set.username }}</h5>
+                                <h5><i class="fas fa-user"></i>{{ review.username }}</h5>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col s5 offset-s1 black-text">
-                                <p>score <span>{{ set.score }}/10</span></p>
+                                <p>score <span>{{ review.score }}/10</span></p>
                             </div>
                             <div class="col s6  black-text">
-                                <p> {{ set.date_created }} </p>
+                                <p> {{ review.time_created }} </p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s10 offset-s1">
-                                <h6>{{ set.review_title }}</h6>
+                                <h6>{{ review.review_title }}</h6>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s10 offset-s1 review-content">
-                                <p>{{ set.review_content }}</p>
+                                <p>{{ review.review_content }}</p>
                             </div>
                         </div>
                         <hr>
-                        {% if session.user|lower == set.username|lower %}
+                        {% if session.user|lower == review.username|lower %}
                         <div class="row">
                             <div class="col s3 m1 offset-s1 offset-m1">
-                                <a href="#" class="btn-small black-text grey lighten-5">Edit</a>
+                                <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-small black-text grey lighten-5">Edit</a>
                             </div>
                             <div class="col s3 m1 offset-s1 offset-m1">
                                 <a href="#" class="btn-small black-text grey lighten-5">Delete</a>

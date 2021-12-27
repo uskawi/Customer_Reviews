@@ -115,16 +115,16 @@ def profile():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("company-name")
-    company = mongo.db.company.find_one(
+    company = mongo.db.companies.find_one(
            {"company_name": query.lower()})
     session["company_name"] = query.lower()
     if company:
         company_name = session["company_name"]
-        review = list(mongo.db.review.find(
+        reviews = list(mongo.db.reviews.find(
             {"company_name": company_name}))
-        if review:
-            company_score = avrage_score(review, "score")
-            return render_template("home.html", review=review,
+        if reviews:
+            company_score = avrage_score(reviews, "score")
+            return render_template("home.html", reviews=reviews,
                                    company_score=company_score,
                                    company=company,
                                    company_name=session["company_name"])
@@ -150,7 +150,7 @@ def add_review():
             "review_content": request.form.get("review-text"),
             "review_title": request.form.get("title")
         }
-        mongo.db.review.insert_one(added_review)
+        mongo.db.reviews.insert_one(added_review)
         flash("Review Added successfully.", "category1")
         return redirect(url_for("add_review"))
 
@@ -168,10 +168,29 @@ def add_company():
             "date_created": time_created,
             "description": request.form.get("description")
         }
-        mongo.db.company.insert_one(added_company)
+        mongo.db.companies.insert_one(added_company)
         flash("Company Added successfully.", "category1")
         return redirect(url_for("add_company"))
     return render_template("add_company.html")
+
+
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
+    time_updated = time_to_string()
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    if request.method == "POST":
+        tobe_updated = {
+            "$set": {
+                "time_updated": time_updated,
+                "score": int(request.form.get("score")),
+                "review_content": request.form.get("review-text"),
+                "review_title": request.form.get("title")
+                }
+            }
+    mongo.db.reviews.update_many(
+        {"_id": ObjectId(review_id)}, tobe_updated)
+    flash("Review updated successfully.", "category1")
+    return render_template("edit_review.html", review=review)
 
 
 def time_to_string():
