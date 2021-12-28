@@ -12,16 +12,19 @@
                     <p>Email: {{ user.email }}<span class="blue-text"></span></p>
                     <p>Member since: {{ user.time_created }}<span class="blue-text"></span></p>
                     {% if user.time_updated %}
-                     <p>Last updated: {{ user.time_updated }}<span class="blue-text"></span></p>
+                    <p>Last updated: {{ user.time_updated }}<span class="blue-text"></span></p>
                     {% endif%}
                 </div>
             </div>
             <div class="row">
-                <div class="col s3 m1 offset-s1 offset-m1">
-                    <a href="{{ url_for('edit_user', user_id=user._id) }}" class="btn light-blue lighten-2">Edit User</a>
+                <div class="col s10 offset-s1">
+                    <a href="{{ url_for('edit_user', user_id=user._id) }}"
+                        class="btn light-blue lighten-2 profile-button">Edit Account</a>
                 </div>
-                <div class="col s3 m1">
-                    <a href="{{ url_for('edit_user', user_id=user._id) }}" class="btn  deep-orange lighten-1 delete-user-button">Delete account</a>
+            </div>
+            <div class="row">
+                <div class="col s8 10 offset-s1">
+                    <a href="{{ url_for('delete_user', user_id=user._id) }}"  onClick="alert('Are you sure you want to delete your account?')" class="btn  deep-orange lighten-1 profile-button">Delete account</a>
                 </div>
             </div>
         </div>

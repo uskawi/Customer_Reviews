@@ -16,6 +16,21 @@
         <h1>Every review tells a story.</h1>
     </div>
 </div>
+<div class="flash3">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages(category_filter=["category3"]) %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="row">
+                   <h4 class=" black-text center-align">
+                       {{ message }}
+                   </h4>
+               </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 <!-- reviews-search -->
 <div id="review-search">
     {% if company|length > 0 %}
@@ -106,7 +121,7 @@
                         class="btn-small black-text grey lighten-5">Edit</a>
                 </div>
                 <div class="col s3 m1 offset-s1 offset-m1">
-                    <a href="" class="btn-small black-text grey lighten-5">Delete</a>
+                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-small black-text grey lighten-5">Delete</a>
                 </div>
             </div>
             {% endif %}

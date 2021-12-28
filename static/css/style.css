@@ -128,6 +128,7 @@ nav ul li:hover {
    position: relative;
 }
 
+
 /* search-form */
 .serach-form {
    position: absolute;
@@ -168,7 +169,6 @@ nav ul li:hover {
 .sign-in-icon, .serch-button span{
    display: none;
 }
-
 
 
 /* header-heading */
@@ -380,8 +380,6 @@ nav ul li:hover {
     margin: 0;
     padding-bottom: 20px;
 }
-
-/* content-text */
 
 .content-text h2 {
     margin-top: 0;

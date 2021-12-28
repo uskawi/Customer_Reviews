@@ -87,10 +87,10 @@ def login():
                     "profile", username=session["user"]))
             else:
                 # invalid password match
-                flash("Incorrect Email and/or Password")
+                flash("Incorrect Email or Password", "category1")
         else:
             # username doesn't exist
-            flash("Incorrect Email and/or Password")
+            flash("Incorrect Email or Password", "category1")
             return redirect(url_for("login"))
 
     return render_template("login.html")
@@ -99,10 +99,9 @@ def login():
 @app.route('/logout')
 def logout():
     """ Logout """
-    flash("You have been logged out",  "category1")
+    flash("You have been logged out", "category1")
     session.pop("user")
     return redirect(url_for("login"))
-
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -124,8 +123,8 @@ def search():
     """ search """
     query = request.form.get("company-name")
     company = mongo.db.companies.find_one(
-           {"company_name": query.lower()})
-    session["company_name"] = query.lower()
+           {"company_name": query})
+    session["company_name"] = query
     if company:
         company_name = session["company_name"]
         reviews = list(mongo.db.reviews.find(
@@ -204,11 +203,19 @@ def edit_review(review_id):
     return render_template("edit_review.html", review=review)
 
 
-# @app.route("/delete_review/<review_id>")
-# def delete_review(review_id):
-#     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
-#     flash("Review Successfully Deleted", "category2")
-#     return redirect(url_for("search_error"))
+@app.route("/delete_review/<review_id>")
+def delete_review(review_id):
+    mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+    flash("Review Successfully Deleted", "category3")
+    return redirect(url_for("home"))
+
+
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("Account Deleted Successfuly", "category3")
+    session.pop("user")
+    return redirect(url_for("home"))
 
 
 @app.route("/edit_user/<user_id>", methods=["POST", "GET"])
@@ -227,15 +234,14 @@ def edit_user(user_id):
         mongo.db.users.update_many(
             {"_id": ObjectId(user_id)}, update_user)
         # update username in all reviews added by the update_user
-        # username = request.form.get("username").lower()
-        # reviews_added_by_update_user = {
-        #     "$set": {
-        #         "username": username,
-        #         }
-        #     }
-        # mongo.db.reviews.upadate_many(
-        #     {"username": request.form.get("username").lower()},
-        #     reviews_added_by_update_user)
+        username = request.form.get("username").lower()
+        reviews_added_by_update_user = {
+            "$set": {
+                "username": username,
+                }
+            }
+        mongo.db.reviews.update_many(
+            {"username": username}, reviews_added_by_update_user)
         session.pop("user")
         flash("User updated successfully. Please login again.", "category1")
         return redirect(url_for("login"))
