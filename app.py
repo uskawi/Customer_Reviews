@@ -24,17 +24,20 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
+    """ home page """
     users = mongo.db.users.find()
     return render_template("home.html", users=users)
 
 
 @app.route("/for_business")
 def for_business():
+    """ for businesses page """
     return render_template("for_business.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """ register page """
     if request.method == "POST":
         #  creating date varibale
         time_created = time_to_string()
@@ -68,6 +71,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """ Login page """
     if request.method == "POST":
         #  check if email already exists in db
         existing_user = mongo.db.users.find_one(
@@ -94,26 +98,30 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """ Logout """
     flash("You have been logged out",  "category1")
     session.pop("user")
     return redirect(url_for("login"))
 
 
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
-    # grab the session user's from db
-    user = mongo.db.users.find_one(
-        {"username": session["user"]})
-    if session["user"]:
-        return render_template(
-            "profile.html", user=user,)
 
-    return render_template(
-        "profile.html", user=user)
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    """ Profile page """
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    user = mongo.db.users.find_one({"username": username})
+
+    if session["user"]:
+        return render_template("profile.html", user=user)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """ search """
     query = request.form.get("company-name")
     company = mongo.db.companies.find_one(
            {"company_name": query.lower()})
@@ -139,6 +147,7 @@ def search():
 
 @app.route("/add_review", methods=["POST", "GET"])
 def add_review():
+    """ add review page """
     # creating date varibale
     time_created = time_to_string()
     if session['user'] and request.method == "POST":
@@ -159,12 +168,13 @@ def add_review():
 
 @app.route("/add_company", methods=["POST", "GET"])
 def add_company():
+    """ Add company page """
     # creating date varibale
     time_created = time_to_string()
     if session['user'] and request.method == "POST":
         added_company = {
             "username": session['user'],
-            "company_name": request.form.get("company-name"),
+            "company_name": request.form.get("company-name").lower(),
             "date_created": time_created,
             "description": request.form.get("description")
         }
@@ -176,8 +186,8 @@ def add_company():
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
+    """ Edit review page """
     time_updated = time_to_string()
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     if request.method == "POST":
         tobe_updated = {
             "$set": {
@@ -187,10 +197,49 @@ def edit_review(review_id):
                 "review_title": request.form.get("title")
                 }
             }
-    mongo.db.reviews.update_many(
-        {"_id": ObjectId(review_id)}, tobe_updated)
+        mongo.db.reviews.update_many(
+            {"_id": ObjectId(review_id)}, tobe_updated)
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     flash("Review updated successfully.", "category1")
     return render_template("edit_review.html", review=review)
+
+
+# @app.route("/delete_review/<review_id>")
+# def delete_review(review_id):
+#     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+#     flash("Review Successfully Deleted", "category2")
+#     return redirect(url_for("search_error"))
+
+
+@app.route("/edit_user/<user_id>", methods=["POST", "GET"])
+def edit_user(user_id):
+    """ Edit user page """
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if request.method == "POST":
+        time_updated = time_to_string()
+        update_user = {
+            "$set": {
+                "time_updated": time_updated,
+                "username": request.form.get("username").lower(),
+                "email": request.form.get("email")
+                }
+            }
+        mongo.db.users.update_many(
+            {"_id": ObjectId(user_id)}, update_user)
+        # update username in all reviews added by the update_user
+        # username = request.form.get("username").lower()
+        # reviews_added_by_update_user = {
+        #     "$set": {
+        #         "username": username,
+        #         }
+        #     }
+        # mongo.db.reviews.upadate_many(
+        #     {"username": request.form.get("username").lower()},
+        #     reviews_added_by_update_user)
+        session.pop("user")
+        flash("User updated successfully. Please login again.", "category1")
+        return redirect(url_for("login"))
+    return render_template("edit_user.html", user=user)
 
 
 def time_to_string():
@@ -201,7 +250,7 @@ def time_to_string():
     -datetime-object-to-string-using-datetime-strftime/")
     '''
     date_time_obj = datetime.now()
-    time_str = date_time_obj.strftime("%d-%b-%Y %H:%M")
+    time_str = date_time_obj.strftime("%d-%b-%Y  (%H:%M)")
 
     return time_str
 

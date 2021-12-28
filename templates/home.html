@@ -19,97 +19,106 @@
 <!-- reviews-search -->
 <div id="review-search">
     {% if company|length > 0 %}
-        <h2 class="black-text text-darken-4 center-align review-search-heading">Results for <span class="found-name">
-                {{ company.company_name }}
-            </span></h2>
-        <div class="row">
-            <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
-                <div class="text-darken-4 search-company-results">
-                    <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews</p>
-                    <p>Company Name:<span class="upper-case">{{ company.company_name }}</span></p>
-                    {% if reviews|length > 0 %}
-                        <p> Total Score:<span class="upper-case">{{ company_score }}/10</span></p>
-
-                    {% else %}
-
-                         <p> Score: No Score Yet</p>
-
-                    {% endif %}
-
-                    <p>Description: <span class="capital"> {{ company.description }} </span> </p>
-                </div>
-
-                {% if session["user"] %}
-
-                    <div class="add-review-btn">
-                        <p class="blue-text">Add review</p>
-                        <button id="add-review-button" class="btn light-blue accent-4" type="button">
-                            <a class="white-text" href="{{ url_for('add_review') }}"> <span>Add A Review</span> <i class="fas fa-sign-in-alt"></i></a></button>
-                    </div>
+    <h2 class="black-text text-darken-4 center-align review-search-heading">Results for <span class="found-name">
+            {{ company.company_name }}
+        </span></h2>
+    <div class="row">
+        <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
+            <div class="text-darken-4 search-company-results">
+                <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews</p>
+                <p>Company Name:<span class="upper-case">{{ company.company_name }}</span></p>
+                {% if reviews|length > 0 %}
+                <p> Total Score:<span class="upper-case">{{ company_score }}/10</span></p>
 
                 {% else %}
 
-                    <div class="add-review-btn">
-                        <p class="blue-text">Add review</p>
-                        <button id="add-review-button" class="btn light-blue accent-4" type="button"
-                            onClick="alert('Please login to write a review')">
-                            <a class="white-text" href="{{ url_for('login') }}"> <span>Add A Review</span><i class="fas fa-sign-in-alt review-in-icon"></i></a></button>
-                    </div>
+                <p> Score: No Score Yet</p>
 
                 {% endif %}
 
-                </div>
+                <p>Description: <span class="capital"> {{ company.description }} </span> </p>
             </div>
 
-        {% if reviews|length > 0 %}
-            {% for review in reviews %}
+            {% if session["user"] %}
 
-                <div class="row small-top-margin">
-                    <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 review">
-                        <div class="row">
-                            <div class="col s10 offset-s1 black-text">
-                                <h5><i class="fas fa-user"></i>{{ review.username }}</h5>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col s5 offset-s1 black-text">
-                                <p>score <span>{{ review.score }}/10</span></p>
-                            </div>
-                            <div class="col s6  black-text">
-                                <p> {{ review.time_created }} </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s10 offset-s1">
-                                <h6>{{ review.review_title }}</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s10 offset-s1 review-content">
-                                <p>{{ review.review_content }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        {% if session.user|lower == review.username|lower %}
-                        <div class="row">
-                            <div class="col s3 m1 offset-s1 offset-m1">
-                                <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-small black-text grey lighten-5">Edit</a>
-                            </div>
-                            <div class="col s3 m1 offset-s1 offset-m1">
-                                <a href="#" class="btn-small black-text grey lighten-5">Delete</a>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                
-        {% endfor %}
-        {% else %}
-            <div class="center-align no-reviews-heading">
-                <h4>No reviews for this company yet</h4>
+            <div class="add-review-btn">
+                <p class="blue-text">Add review</p>
+                <button id="add-review-button" class="btn light-blue accent-4" type="button">
+                    <a class="white-text" href="{{ url_for('add_review') }}"> <span>Add A Review</span> <i
+                            class="fas fa-sign-in-alt"></i></a></button>
             </div>
-        {% endif %}
+
+            {% else %}
+
+            <div class="add-review-btn">
+                <p class="blue-text">Add review</p>
+                <button id="add-review-button" class="btn light-blue accent-4" type="button"
+                    onClick="alert('Please login to write a review')">
+                    <a class="white-text" href="{{ url_for('login') }}"> <span>Add A Review</span><i
+                            class="fas fa-sign-in-alt review-in-icon"></i></a></button>
+            </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% if reviews|length > 0 %}
+    {% for review in reviews %}
+
+    <div class="row small-top-margin">
+        <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 review">
+            <div class="row">
+                <div class="col s10 offset-s1 black-text">
+                    <h5><i class="fas fa-user"></i>{{ review.username }}</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col s5 offset-s1 black-text">
+                    <p>score <span>{{ review.score }}/10</span></p>
+                </div>
+                {% if review.time_updated %}
+                <div class="col s6  black-text">
+                    <p> updated: {{ review.time_updated }} </p>
+                </div>
+                {% else %}
+                <div class="col s6  black-text">
+                    <p> {{ review.time_created }} </p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <h6>{{ review.review_title }}</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1 review-content">
+                    <p>{{ review.review_content }}</p>
+                </div>
+            </div>
+            <hr>
+            {% if session.user|lower == review.username|lower %}
+            <div class="row">
+                <div class="col s3 m1 offset-s1 offset-m1">
+                    <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                        class="btn-small black-text grey lighten-5">Edit</a>
+                </div>
+                <div class="col s3 m1 offset-s1 offset-m1">
+                    <a href="" class="btn-small black-text grey lighten-5">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="center-align no-reviews-heading">
+        <h4>No reviews for this company yet</h4>
+    </div>
+    {% endif %}
     {% endif %}
 </div>
 
