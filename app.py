@@ -337,32 +337,6 @@ def edit_password(user_id):
     return render_template("edit_password.html", user=user)
 
 
-# @app.route("/edit_uesername/<uesr_id>")
-# def edit_user(user_id):
-#     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-#     time_updated = time_to_string()
-#     if request.method == "POST":
-#         username = request.form.get("username").lower()
-#         existing_username = mongo.db.users.find_one({"username": username})
-#         if existing_username:
-#             update_user = {
-#                 "$set": {
-#                     "time_updated": time_updated,
-#                     "username": username,
-#                     }
-#                 }
-#             mongo.db.users.update_many(
-#                {"_id": ObjectId(user_id)}, update_user)
-#             # update username in all reviews added by the update_user
-#             reviews_added_by_update_user = {"$set": {"username": username}}
-#             mongo.db.reviews.update_many(
-#                 {"username": username}, reviews_added_by_update_user)
-#             session.pop("user")
-#             flash("User updated successfully. Please login again.",
-#                   "category1")
-#             return redirect(url_for("login"))
-
-
 def time_to_string():
     '''
     convert datetime object to string using datetime.strftime()

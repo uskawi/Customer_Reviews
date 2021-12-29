@@ -284,6 +284,62 @@ nav ul li:hover {
     border: 1px solid #7c7b7bde;
 }
 
+/* few words */
+
+.few-words  {
+    padding: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+/* hottest-companies */
+
+.hotest-section-heding i{
+ margin-left: 10px;
+ font-size: 110%;
+ margin-bottom: 20px;
+}
+
+.hottest-companies {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.hottest-companies-heading {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.hottest-companies-heading h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.hottest-companies-heading p {
+    padding: 0 10px;
+}
+
+.hottest-companies-heading p span {
+    color: rgb(211, 44, 44);
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.hot-company h5 {
+    margin-bottom: 0;
+}
+
+.hot-company p{
+   margin: 0;
+}
+
 /* error page */
 
 .error-message {
