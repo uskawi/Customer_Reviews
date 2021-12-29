@@ -304,6 +304,39 @@ def edit_user(user_id):
 
     return render_template("edit_user.html", user=user)
 
+
+@app.route("/edit_password/<user_id>", methods=["POST", "GET"])
+def edit_password(user_id):
+    # """ Edit password """
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    time_updated = time_to_string()
+    old_password = "password"
+    if request.method == "POST":
+        new_password = request.form.get("password")
+        if new_password != old_password:
+            update_password = {
+                "$set": {
+                    "time_updated": time_updated,
+                    "password": generate_password_hash(
+            request.form.get("password"))
+                    }
+                }
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, update_password)
+            session.pop("user")
+            flash(
+                "User password updated successfully."
+                "Please login again.",
+                "category1")
+            return redirect(url_for("login"))
+        else:
+            flash(
+                "We couldn't updated your password.", "category1")
+            return redirect(url_for("edit_password",
+                            user=user, user_id=user["_id"]))
+    return render_template("edit_password.html", user=user)
+
+
 # @app.route("/edit_uesername/<uesr_id>")
 # def edit_user(user_id):
 #     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})

@@ -8,9 +8,10 @@
                 <h4 class="center-align blue-text"><i class="fas fa-user blue-text"></i> {{ user.username }}
                 </h4>
                 <div class="col s11 offset-s1">
-                    <p>Username: {{ user.username }}<span class="blue-text"></span></p>
+                    <p>Username: <span class="blue-text">{{ user.username }}</span></p>
                     <p>Email: {{ user.email }}<span class="blue-text"></span></p>
-                    <p>Member since: {{ user.time_created }}<span class="blue-text"></span></p>
+                    <p>Member since: <span class="blue-text">{{ user.time_created }}</span></p>
+                    <p>Password: <span class="blue-text">xxxxxxx</span></p>
                     {% if user.time_updated %}
                     <p>Last updated: {{ user.time_updated }}<span class="blue-text"></span></p>
                     {% endif%}
@@ -19,12 +20,17 @@
             <div class="row">
                 <div class="col s10 offset-s1">
                     <a href="{{ url_for('edit_user', user_id=user._id) }}"
-                        class="btn light-blue lighten-2 profile-button">Edit Account</a>
+                        class="profile_links">Edit User Info</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col s8 10 offset-s1">
-                    <a href="{{ url_for('delete_user', user_id=user._id) }}"  onClick="alert('Are you sure you want to delete your account?')" class="btn  deep-orange lighten-1 profile-button">Delete account</a>
+                    <a href="{{ url_for('edit_password', user_id=user._id) }}" class="profile_links">Change Password</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s8 10 offset-s1">
+                    <a href="{{ url_for('delete_user', user_id=user._id) }}"  onClick="alert('Are you sure you want to delete your account?')" class="profile_links">Delete account</a>
                 </div>
             </div>
         </div>

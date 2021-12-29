@@ -33,7 +33,6 @@ p {
     border-bottom: 1px solid #000;
 }
 
-
 .small-top-margin {
     margin-top: 15px;
 }
@@ -338,6 +337,12 @@ nav ul li:hover {
 .business-banner h1 {
     margin: 0;
     color: #fff;
+}
+
+/* profile */
+
+.profile_links {
+    text-decoration: underline;
 }
 
 /* Add a company */
