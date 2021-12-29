@@ -3,13 +3,14 @@
 
 <h3 class="center-align  light-blue-text text-accent-4">Edit User</h3>
 <div class="row">
-    <!-- register form -->
-    <form class="col m8 s10 offset-m2 offset-s1 form-border" method="POST" action="{{ url_for('edit_user', user_id=user._id) }}">
+    <!-- edit user form -->
+    <form class="col m8 s10 offset-m2 offset-s1" method="POST" action="{{ url_for('edit_user', user_id=user._id) }}">
         <!-- username -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-user prefix light-blue-text taxt-accent-4"></i>
-                <input id="username" type="text" value="{{ user.username }}" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                <input id="username" type="text" value="{{ user.username }}" name="username" minlength="5"
+                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                 <label for="username">New User Name</label>
             </div>
         </div>
@@ -23,9 +24,9 @@
         </div>
         <!-- submit button -->
         <div class="row">
-                <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">Send
-                    <i class="fas fa-sign-in-alt"></i>
-                </button>
+            <button class="col s10 offset-s1 btn light-blue accent-4" type="submit" name="action">Send
+                <i class="fas fa-sign-in-alt"></i>
+            </button>
         </div>
     </form>
 </div>

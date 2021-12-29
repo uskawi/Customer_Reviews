@@ -1,3 +1,4 @@
+""" import """
 import os
 from datetime import datetime
 from flask import (
@@ -198,13 +199,14 @@ def edit_review(review_id):
             }
         mongo.db.reviews.update_many(
             {"_id": ObjectId(review_id)}, tobe_updated)
+        flash("Review updated successfully.", "category1")
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    flash("Review updated successfully.", "category1")
     return render_template("edit_review.html", review=review)
 
 
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
+    """ Edit review page """
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted", "category3")
     return redirect(url_for("home"))
@@ -212,6 +214,7 @@ def delete_review(review_id):
 
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
+    """ Edit review page """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Account Deleted Successfuly", "category3")
     session.pop("user")
@@ -220,32 +223,111 @@ def delete_user(user_id):
 
 @app.route("/edit_user/<user_id>", methods=["POST", "GET"])
 def edit_user(user_id):
-    """ Edit user page """
+    """ Edit user """
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    old_username = user["username"]
+    time_updated = time_to_string()
     if request.method == "POST":
-        time_updated = time_to_string()
-        update_user = {
-            "$set": {
-                "time_updated": time_updated,
-                "username": request.form.get("username").lower(),
-                "email": request.form.get("email")
-                }
-            }
-        mongo.db.users.update_many(
-            {"_id": ObjectId(user_id)}, update_user)
-        # update username in all reviews added by the update_user
         username = request.form.get("username").lower()
-        reviews_added_by_update_user = {
-            "$set": {
-                "username": username,
+        email = request.form.get("email")
+        existing_username = mongo.db.users.find_one(
+            {"username": username})
+        existing_email = mongo.db.users.find_one({"email": email})
+        if not existing_username and not existing_email:
+
+            update_user = {
+                "$set": {
+                    "time_updated": time_updated,
+                    "username": username,
+                    "email": email,
+                    }
                 }
-            }
-        mongo.db.reviews.update_many(
-            {"username": username}, reviews_added_by_update_user)
-        session.pop("user")
-        flash("User updated successfully. Please login again.", "category1")
-        return redirect(url_for("login"))
+            mongo.db.users.update_many(
+                {"_id": ObjectId(user_id)}, update_user)
+            # update username in all reviews added by the update_user
+            reviews_added_by_update_user = {
+                "$set": {
+                    "username": username,
+                    }
+                }
+            mongo.db.reviews.update_many(
+                {"username": old_username}, reviews_added_by_update_user)
+            session.pop("user")
+            flash(
+                "User name and email updated successfully."
+                "Please login again.",
+                "category1")
+            return redirect(url_for("login"))
+
+        elif not existing_username and existing_email:
+
+            update_user = {
+                "$set": {
+                    "time_updated": time_updated,
+                    "username": username,
+                    }
+                }
+            mongo.db.users.update_many(
+                {"_id": ObjectId(user_id)}, update_user)
+            # update username in all reviews added by the update_user
+            reviews_added_by_update_user = {
+                "$set": {
+                    "username": username,
+                    }
+                }
+            mongo.db.reviews.update_one(
+                {"username":  old_username}, reviews_added_by_update_user)
+            session.pop("user")
+            flash("Username updated successfully. Please login again.",
+                  "category1")
+            return redirect(url_for("login"))
+
+        if existing_username and not existing_email:
+
+            update_user = {
+                "$set": {
+                    "time_updated": time_updated,
+                    "email": email,
+                    }
+                }
+            mongo.db.users.update_many(
+                {"_id": ObjectId(user_id)}, update_user)
+            flash(
+                "email updated successfully. Please login again.",
+                "category1")
+            return redirect(url_for("login"))
+
+        else:
+            flash("Sorry but we could't update your details", "category1")
+            return redirect(url_for("edit_user",
+                            user=user, user_id=user["_id"]))
+
     return render_template("edit_user.html", user=user)
+
+# @app.route("/edit_uesername/<uesr_id>")
+# def edit_user(user_id):
+#     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+#     time_updated = time_to_string()
+#     if request.method == "POST":
+#         username = request.form.get("username").lower()
+#         existing_username = mongo.db.users.find_one({"username": username})
+#         if existing_username:
+#             update_user = {
+#                 "$set": {
+#                     "time_updated": time_updated,
+#                     "username": username,
+#                     }
+#                 }
+#             mongo.db.users.update_many(
+#                {"_id": ObjectId(user_id)}, update_user)
+#             # update username in all reviews added by the update_user
+#             reviews_added_by_update_user = {"$set": {"username": username}}
+#             mongo.db.reviews.update_many(
+#                 {"username": username}, reviews_added_by_update_user)
+#             session.pop("user")
+#             flash("User updated successfully. Please login again.",
+#                   "category1")
+#             return redirect(url_for("login"))
 
 
 def time_to_string():
