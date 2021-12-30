@@ -26,8 +26,11 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     """ home page """
-    users = mongo.db.users.find()
-    return render_template("home.html", users=users)
+    # # reviews = mongo.db.reviews.find()
+    # companies = mongo.db.companies.find()
+    # # for company in companies:
+    # #     company_names.append(company["company_name"])
+    return render_template("home.html")
 
 
 @app.route("/for_business")
@@ -132,13 +135,13 @@ def search():
             {"company_name": company_name}))
         if reviews:
             company_score = avrage_score(reviews, "score")
-            return render_template("home.html", reviews=reviews,
+            return render_template("search_results.html", reviews=reviews,
                                    company_score=company_score,
                                    company=company,
                                    company_name=session["company_name"])
 
         else:
-            return render_template("home.html", company=company)
+            return render_template("serach_results.html", company=company)
 
     flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
           "category2")

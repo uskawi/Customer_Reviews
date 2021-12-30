@@ -16,22 +16,6 @@
         <h1>Every review tells a story.</h1>
     </div>
 </div>
-<div class="flash3">
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages(category_filter=["category3"]) %}
-        {% if messages %}
-            {% for message in messages %}
-               <div class="row">
-                   <h4 class=" black-text center-align">
-                       {{ message }}
-                   </h4>
-               </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
-
-
 <!-- reviews-search -->
 <div id="review-search">
     {% if company|length > 0 %}
@@ -136,45 +120,6 @@
     </div>
     {% endif %}
     {% endif %}
-</div>
-<div class="few-words black-text grey lighten-5">
-    <p><span class="balck-text">CustomerReviews</span> open to every company and consumer everywhere. Sharing your
-        experiences helps others make better choices and companies up their game.</p>
-</div>
-<div class="hotest-section-heding center-align">
-    <h4 class="blue-text text-lighten-1">Hotest Companies<i class="fas fa-fire orange-text text-darken-1"></i></h4>
-</div>
-
-<div class="hottest-companies">
-    <div class="hottest-companies-heading  grey lighten-5">
-        <p><span>Please note</span> that these are the most reviewed companies, it does not mean that they have the
-            highest rating.</p>
-    </div>
-   
-    <p> </p>
-
-    <div class="row big-top-margin hot-company">
-        <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5">
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <h5></h5>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <p>score 8/10</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <p>Travel Insurance Comapany. Airline Ticket And Holiday Agency</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-
 </div>
 
 
