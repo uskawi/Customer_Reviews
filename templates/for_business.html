@@ -4,20 +4,16 @@
     <div class="for_business-heading">
         <h1>Turn reviews into traffic, sales, and customer loyalty.</h1>
     </div>
-</div>
+
 {% if session["user"] %}
-<div class="Add_company">
-    <div class="add_company_wrapper">
-        <a href="{{ url_for('add_company')}}">Add Your Company</a>
-    </div>
-</div>
+      <a id="business-banner-link" href="{{ url_for('add_company')}}" class="btn">Add Company</a>
 {% else %}
-<div class="Add_company">
-    <div class="add_company_wrapper"  onClick="alert('Please login to add a company')")>
-        <a href="{{ url_for('login')}}">Add Your Company</a>
-    </div>
-</div>
+
+        <a id="business-banner-link" href="{{ url_for('login')}}" class="btn">Add Company</a>
+
 {% endif %}
+</div>
+<!-- benefits -->
 <div class="content-text grey lighten-5">
     <h2 class="center-align grey-text text-darken-1">Benefits of Adding your business.</h2>
     <hr>

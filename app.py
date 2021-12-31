@@ -1,5 +1,6 @@
 """ import """
 import os
+from collections import Counter
 from datetime import datetime
 from flask import (
     Flask, flash, render_template,
@@ -26,11 +27,10 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     """ home page """
-    # # reviews = mongo.db.reviews.find()
-    # companies = mongo.db.companies.find()
-    # # for company in companies:
-    # #     company_names.append(company["company_name"])
-    return render_template("home.html")
+    hottest_companies = mongo.db.companies.find().sort(
+            "reviews_count", -1).limit(3)
+    company_counter = 0
+    return render_template("home.html", hottest_companies=hottest_companies, company_counter=company_counter)
 
 
 @app.route("/for_business")
@@ -125,7 +125,7 @@ def profile(username):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """ search """
-    query = request.form.get("company-name")
+    query = request.form.get("company-name").lower()
     company = mongo.db.companies.find_one(
            {"company_name": query})
     session["company_name"] = query
@@ -141,7 +141,7 @@ def search():
                                    company_name=session["company_name"])
 
         else:
-            return render_template("serach_results.html", company=company)
+            return render_template("search_results.html", company=company)
 
     flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
           "category2")
@@ -154,17 +154,27 @@ def add_review():
     # creating date varibale
     time_created = time_to_string()
     if session['user'] and request.method == "POST":
+        reviews_count = mongo.db.companies.find_one(
+            {"company_name": session["company_name"]})["reviews_count"]
         added_review = {
             "username": session['user'],
             "company_name": session["company_name"],
             "time_created": time_created,
             "score": int(request.form.get("score")),
             "review_content": request.form.get("review-text"),
-            "review_title": request.form.get("title")
+            "review_title": request.form.get("title"),
         }
+        # add reviews counter to reviewed company
+        new_review_count = {
+                "$set": {
+                    "reviews_count": reviews_count + 1
+                    }
+                }
         mongo.db.reviews.insert_one(added_review)
-        flash("Review Added successfully.", "category1")
-        return redirect(url_for("add_review"))
+        mongo.db.companies.update_one(
+            {"company_name": session["company_name"]}, new_review_count)
+        flash("Review Added successfully.", "category4")
+        return redirect(url_for("search_results"))
 
     return render_template("add_review.html")
 
@@ -179,7 +189,8 @@ def add_company():
             "username": session['user'],
             "company_name": request.form.get("company-name").lower(),
             "date_created": time_created,
-            "description": request.form.get("description")
+            "description": request.form.get("description"),
+            "reviews_count": 0
         }
         mongo.db.companies.insert_one(added_company)
         flash("Company Added successfully.", "category1")
@@ -321,7 +332,7 @@ def edit_password(user_id):
                 "$set": {
                     "time_updated": time_updated,
                     "password": generate_password_hash(
-            request.form.get("password"))
+                                request.form.get("password"))
                     }
                 }
             mongo.db.users.update_one(

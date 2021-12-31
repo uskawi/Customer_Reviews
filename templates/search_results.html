@@ -16,11 +16,22 @@
         <h1>Every review tells a story.</h1>
     </div>
 </div>
+{% with messages = get_flashed_messages(category_filter=["category4"]) %}
+{% if messages %}
+    {% for message in messages %}
+       <div class="row">
+           <h4 class=" white-text center-align light-blue accent-4">
+               {{ message }}
+           </h4>
+       </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
 <!-- reviews-search -->
 <div id="review-search">
     {% if company|length > 0 %}
     <h2 class="black-text text-darken-4 center-align review-search-heading">Results for <span class="found-name">
-            {{ company.company_name }}
+            {{ company.company_name }} 
         </span></h2>
     <div class="row">
         <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
