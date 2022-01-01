@@ -40,18 +40,18 @@
 
 
 <div class="hottest-companies">
-    <div class="hottest-companies-heading  grey lighten-5">
+    <div class="hottest-companies-disclaimer  grey lighten-5">
         <p><span>Please note</span> that these are the most reviewed companies, it does not mean that they have the
             highest rating.</p>
-    </div>
+   </div>
 
 
 {% for names in hottest_companies %}
-    <div class="row big-top-margin hot-company">
-        <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5">
+    <div class="row">
+        <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 hot-company">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <h5>Company Name: <span class="upper-case">{{ names.company_name }}</span></h5>
+                    <h5><i class="fas fa-fire orange-text text-darken-1"></i>Company Name: <span class="upper-case">{{ names.company_name }}</span></h5>
                 </div>
             </div>
             <hr>
@@ -68,7 +68,7 @@
             <hr>
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <a href="">See reviews and the score obtained by this company.</a>
+                    <a href="{{ url_for('views_hottest_companies', company_name=names.company_name) }}">Go to <span class="upper-case blue-text">{{ names.company_name }}</span></a>
                 </div>
             </div>
         </div>

@@ -129,16 +129,14 @@
                     </div>
                     <div class="row">
                         <ul>
-                            <div class="col m3 s6">
+                            <div class="col m3 s5 offset-s1">
                                 <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
                             </div>
                             <div class="col m3 s6">
-                            </div>
-                            <div class="col m3 s6">
-                                <li><a class="white-text" href="{{ url_for('for_business') }}">For Businesses</a></li>
+                                <li><a class="white-text inline_block" href="{{ url_for('for_business') }}"><span>For</span>  Businesses</a></li>
                             </div>
                             {% if session.user %}
-                                <div class="col m3 s6">
+                                <div class="col m3 s5 offset-s1">
                                     <li><a class="white-text" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                                 </div>
                                 <div class="col m3 s6">

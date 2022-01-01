@@ -1,6 +1,5 @@
 """ import """
 import os
-from collections import Counter
 from datetime import datetime
 from flask import (
     Flask, flash, render_template,
@@ -30,7 +29,19 @@ def home():
     hottest_companies = mongo.db.companies.find().sort(
             "reviews_count", -1).limit(3)
     company_counter = 0
-    return render_template("home.html", hottest_companies=hottest_companies, company_counter=company_counter)
+    return render_template("home.html",
+                           hottest_companies=hottest_companies,
+                           company_counter=company_counter)
+
+
+@app.route("/views_hottest_companies/<company_name>")
+def views_hottest_companies(company_name):
+    company = mongo.db.companies.find_one({"company_name": company_name})
+    reviews = list(mongo.db.reviews.find({"company_name": company_name}))
+    return render_template("search_results.html",
+                           company=company, reviews=reviews)
+
+
 
 
 @app.route("/for_business")
@@ -173,8 +184,8 @@ def add_review():
         mongo.db.reviews.insert_one(added_review)
         mongo.db.companies.update_one(
             {"company_name": session["company_name"]}, new_review_count)
-        flash("Review Added successfully.", "category4")
-        return redirect(url_for("search_results"))
+        flash("Review Added successfully.", "category1")
+        return render_template("add_review.html")
 
     return render_template("add_review.html")
 
