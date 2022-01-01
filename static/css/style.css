@@ -124,7 +124,7 @@ nav ul li:hover {
 /* header-image */
 
 .header-image  {
-background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8)), url("../images/header-image.jpg") ;
+   background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8)), url("../images/header-image.jpg") ;
    background-blend-mode: multiply;
    background-position: left;
    background-size: cover;
@@ -346,10 +346,6 @@ background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8
     margin: 80px 0;
 }
 
-.row .review {
-    padding-bottom: 40px;
-}
-
 
 .review i {
     font-size: 90%;
@@ -428,11 +424,14 @@ background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8
 /* for_business */
 
 .business-banner {
+    background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8)), url("../images/for_businesses.jpg") ;
+    background-blend-mode: multiply;
+    background-position: right;
+    background-size: cover;
+    background-attachment: fixed;
     width: 100%;
-    height: 250px;
-    background-color: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8));
+    height: 390px;
     text-align: center;
-    color: rgb(51, 53, 52);
 }
 
 .for_business-heading {
@@ -447,32 +446,29 @@ background: -webkit-linear-gradient(rgba(76, 94, 231, 0.8), rgba(228, 76, 6, 0.8
     color: #fff;
 }
 
-
-
-
 #business-banner-link {
     width: 90%;
-    background-color: rgba(176, 107, 182, 0.74);
+    background-color: rgba(228, 76, 6, 0.5);
     height: 50px;
     margin: 0 auto;
     border: 2px solid #fff;
     border-radius: 12px;
     line-height: 50px;
     position: relative;
-    top: 130px;
+    top: 200px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 18px;
 }
 
 .content-text-item {
-    border-bottom: 1px solid rgba(176, 107, 182, 0.74);
+    border-bottom: 1px solid rgba(228, 76, 6);
 }
 
 .content-text hr {
     width: 50%;
     margin: 0 auto;
-    border: 1px solid rgba(176, 107, 182, 0.74);
+    border: 0.5px solid rgba(228, 76, 6);
     margin-bottom: 20px;
 }
 
