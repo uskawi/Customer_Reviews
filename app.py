@@ -233,6 +233,16 @@ def edit_review(review_id):
 def delete_review(review_id):
     """ Edit review page """
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+    reviews_count = mongo.db.companies.find_one(
+            {"company_name": session["company_name"]})["reviews_count"]
+    # add reviews counter to reviewed company
+    new_review_count = {
+            "$set": {
+                "reviews_count": reviews_count - 1
+                }
+            }
+    mongo.db.companies.update_one(
+        {"company_name": session["company_name"]}, new_review_count)
     flash("Review Successfully Deleted", "category3")
     return redirect(url_for("home"))
 
