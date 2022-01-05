@@ -42,8 +42,6 @@ def views_hottest_companies(company_name):
                            company=company, reviews=reviews)
 
 
-
-
 @app.route("/for_business")
 def for_business():
     """ for businesses page """
@@ -56,7 +54,12 @@ def register():
     if request.method == "POST":
         #  creating date varibale
         time_created = time_to_string()
-        #  check if username already exists in db
+        # Check if username exists in the Reviews collection
+        # to prevent a new user from becoming the owner of
+        # reviews written by a deleted user
+        # existed_user = mongo.db.reviews.find(
+        #     {"username": request.form.get("username").lower()})
+        #  check if username already exists in user collection
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         #  check if email already exists in db
@@ -241,6 +244,7 @@ def delete_review(review_id):
                 "reviews_count": reviews_count - 1
                 }
             }
+
     mongo.db.companies.update_one(
         {"company_name": session["company_name"]}, new_review_count)
     flash("Review Successfully Deleted", "category3")
