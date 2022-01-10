@@ -54,12 +54,6 @@ def register():
     if request.method == "POST":
         #  creating date varibale
         time_created = time_to_string()
-        # Check if username exists in the Reviews collection
-        # to prevent a new user from becoming the owner of
-        # reviews written by a deleted user
-        # existed_user = mongo.db.reviews.find(
-        #     {"username": request.form.get("username").lower()})
-        #  check if username already exists in user collection
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         #  check if email already exists in db
@@ -171,8 +165,8 @@ def add_review():
         reviews_count = mongo.db.companies.find_one(
             {"company_name": session["company_name"]})["reviews_count"]
         added_review = {
-            "username": session['user'],
-            "company_name": session["company_name"],
+            "user_id": user_id,
+            "company_id": session["company_name"],
             "time_created": time_created,
             "score": int(request.form.get("score")),
             "review_content": request.form.get("review-text"),

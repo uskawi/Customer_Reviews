@@ -61,16 +61,18 @@
             {% if session["user"] %}
 
             <div class="add-review-btn">
-                <p class="blue-text">Add review</p>
+                <!-- <a class="white-text" href=""> Add A Review <i
+                    class="fas fa-sign-in-alt"></i></a> -->
                 <button id="add-review-button" class="btn light-blue accent-4" type="button">
-                    <a class="white-text" href="{{ url_for('add_review') }}"> Add A Review <i
-                            class="fas fa-sign-in-alt"></i></a></button>
+                    <a class="white-text" href=""> Add A Review <i
+                            class="fas fa-sign-in-alt"></i></a>
+                </button>
             </div>
 
             {% else %}
 
             <div class="add-review-btn">
-                <p class="blue-text">Add review</p>
+                <p><a class="blue-text" href="{{ url_for('login') }}"  onClick="alert('Please login to write a review')"> Add A Review <i class="fas fa-sign-in-alt"></i></a></p>
                 <button id="add-review-button" class="btn light-blue accent-4" type="button"
                     onClick="alert('Please login to write a review')">
                     <a class="white-text" href="{{ url_for('login') }}"> <span>Add A Review</span><i
