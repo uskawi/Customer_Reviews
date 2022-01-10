@@ -55,8 +55,8 @@
         <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 hot-company">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <h5><i class="fas fa-fire orange-text text-darken-1"></i>Company Name: <span
-                            class="upper-case">{{ names.company_name }}</span></h5>
+                    <h5><i class="fas fa-fire orange-text text-darken-1"></i><a class="black-text" href="{{ url_for('views_hottest_companies', company_name=names.company_name) }}"> Company Name:<span
+                                class="upper-case blue-text">{{ names.company_name }}</span></a></h5>
                 </div>
             </div>
             <hr>
@@ -70,13 +70,13 @@
                     <p>Description: <span class="upper-case">{{ names.description}}</span></p>
                 </div>
             </div>
-            <hr>
-            <div class="row">
+            <!-- <hr> -->
+            <!-- <div class="row">
                 <div class="col s10 offset-s1">
                     <a href="{{ url_for('views_hottest_companies', company_name=names.company_name) }}">Go to <span
                             class="upper-case blue-text">{{ names.company_name }}</span></a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
