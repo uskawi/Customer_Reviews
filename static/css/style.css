@@ -733,13 +733,13 @@ nav ul li:hover {
 
     .search-comapany-container {
         position: relative;
-        height: 160px;
+        height: 120px;
     }
     
     
     #add-review-button {
         position: relative;
-        bottom: 80px;
+        bottom: 60px;
         left: 55%;
         width: 30%;
     }

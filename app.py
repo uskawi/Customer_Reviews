@@ -133,27 +133,30 @@ def profile(username):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """ search """
-    query = request.form.get("company-name").lower()
-    company = mongo.db.companies.find_one(
-           {"company_name": query})
-    session["company_name"] = query
-    if company:
-        company_name = session["company_name"]
-        reviews = list(mongo.db.reviews.find(
-            {"company_name": company_name}))
-        if reviews:
-            company_score = avrage_score(reviews, "score")
-            return render_template("search_results.html", reviews=reviews,
-                                   company_score=company_score,
-                                   company=company,
-                                   company_name=session["company_name"])
 
-        else:
-            return render_template("search_results.html", company=company)
+    query = request.form.get("company-name")
+    companies = list(mongo.db.companies.find({"$text": {"$search": query}}))
+    # company = mongo.db.companies.find_one(
+    #        {"company_name": query})
+    # session["company_name"] = query
+    # if company:
+    #     company_name = session["company_name"]
+    #     reviews = list(mongo.db.reviews.find(
+    #         {"company_name": company_name}))
+    #     if reviews:
+    #         company_score = avrage_score(reviews, "score")
+    #         return render_template("search_results.html", reviews=reviews,
+    #                                company_score=company_score,
+    #                                company=company,
+    #                                company_name=session["company_name"])
 
-    flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
-          "category2")
-    return render_template("search_error.html")
+    #     else:
+    #         return render_template("search_results.html", company=company)
+
+    # flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
+    #       "category2")
+    return render_template(
+        "companies_results.html", companies=companies, query=query)
 
 
 @app.route("/add_review", methods=["POST", "GET"])
@@ -162,11 +165,14 @@ def add_review():
     # creating date varibale
     time_created = time_to_string()
     if session['user'] and request.method == "POST":
-        reviews_count = mongo.db.companies.find_one(
-            {"company_name": session["company_name"]})["reviews_count"]
+        reviews = mongo.db.companies.find_one(
+            {"company_name": session["company_name"]})
+        reviews_count = reviews["reviews_count"]
+        company_id = reviews["_id"]
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         added_review = {
             "user_id": user_id,
-            "company_id": session["company_name"],
+            "company_id": company_id,
             "time_created": time_created,
             "score": int(request.form.get("score")),
             "review_content": request.form.get("review-text"),
