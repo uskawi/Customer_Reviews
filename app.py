@@ -26,7 +26,7 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     """ home page """
-    #finding most reviewed companies
+    # finding most reviewed companies
     hottest_companies = mongo.db.companies.find().sort(
             "reviews_count", -1).limit(4)
     company_counter = 0
@@ -126,6 +126,7 @@ def profile(username):
 
 @app.route("/users_companies/<user_id>")
 def users_companies(user_id):
+    """display companies added by user"""
     companies = list(mongo.db.companies.find({"user_id": ObjectId(user_id)}))
     return render_template("users_companies.html", companies=companies)
 
@@ -270,6 +271,7 @@ def delete_review(review_id):
 
 @app.route("/delete_company/<company_id>")
 def delete_company(company_id):
+    """Delete Company"""
     mongo.db.companies.remove({"_id": ObjectId(company_id)})
     flash("Company Deleted. Thank you for being with us.", "category2")
     return render_template("messages.html")
