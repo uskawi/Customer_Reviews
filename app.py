@@ -364,12 +364,10 @@ def edit_password(user_id):
                 }
             mongo.db.users.update_one(
                 {"_id": ObjectId(user_id)}, update_password)
-            session.pop("user")
+            new_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
             flash(
-                "User password updated successfully."
-                "Please login again.",
-                "category1")
-            return redirect(url_for("login"))
+                "User password updated successfully.", "category1")
+            return render_template("profile.html", user=new_user)
         else:
             flash(
                 "We couldn't updated your password.", "category1")
