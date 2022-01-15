@@ -203,19 +203,25 @@ def add_review(company_id):
 def add_company():
     """ Add company page """
     # creating date varibale
+    existing_company = mongo.db.companies.find_one(
+        {"company_name": request.form.get("company-name")})
     time_created = time_to_string()
     user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    if session['user'] and request.method == "POST":
-        added_company = {
-            "user_id": user_id,
-            "company_name": request.form.get("company-name").lower(),
-            "date_created": time_created,
-            "description": request.form.get("description"),
-            "reviews_count": 0
-        }
-        mongo.db.companies.insert_one(added_company)
-        flash("Company Added successfully.", "category2")
-        return render_template("messages.html")
+    if session["user"] and request.method == "POST":
+        if existing_company:
+            flash("Company ''{}'' Already Exists".format(request.form.get("company-name")), "category1")
+            return render_template("add_company.html")
+        else:
+            added_company = {
+                "user_id": user_id,
+                "company_name": request.form.get("company-name").lower(),
+                "date_created": time_created,
+                "description": request.form.get("description"),
+                "reviews_count": 0
+            }
+            mongo.db.companies.insert_one(added_company)
+            flash("Company Added successfully.", "category2")
+            return render_template("messages.html")
     return render_template("add_company.html")
 
 
@@ -241,8 +247,8 @@ def edit_review(review_id):
 
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
-    """ Edit review page """
-    company_id =  mongo.db.reviews.find_one({"_id": ObjectId(review_id)})["company_id"]
+    """ Delete review page """
+    company_id = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})["company_id"]
     reviews_count = mongo.db.companies.find_one(
             {"_id": ObjectId(company_id)})["reviews_count"] 
     # add reviews counter to reviewed company
