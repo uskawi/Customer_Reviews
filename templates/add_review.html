@@ -4,7 +4,7 @@
 <h3 class="center-align  light-blue-text text-accent-4">Add Review</h3>
 <div class="row">
     <!-- Review form -->
-    <form class="col m8 s10 offset-m2 grey lighten-5 offset-s1 review-form " method="POST" action="{{ url_for('add_review') }}">
+    <form class="col m8 s10 offset-m2 grey lighten-5 offset-s1 review-form " method="POST" action="{{ url_for('add_review', company_id=company._id) }}">
         <!-- score -->
         <div class="row">
             <div class="col m8 s10 offset-m2 offset-s1">

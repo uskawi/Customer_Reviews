@@ -36,6 +36,7 @@ def home():
 
 @app.route("/views_hottest_companies/<company_name>")
 def views_hottest_companies(company_name):
+    """ Hottest companies"""
     company = mongo.db.companies.find_one({"company_name": company_name})
     reviews = list(mongo.db.reviews.find({"company_name": company_name}))
     return render_template("search_results.html",
@@ -132,43 +133,48 @@ def profile(username):
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    """ search """
+    """ company search """
 
     query = request.form.get("company-name")
     companies = list(mongo.db.companies.find({"$text": {"$search": query}}))
-    # company = mongo.db.companies.find_one(
-    #        {"company_name": query})
-    # session["company_name"] = query
-    # if company:
-    #     company_name = session["company_name"]
-    #     reviews = list(mongo.db.reviews.find(
-    #         {"company_name": company_name}))
-    #     if reviews:
-    #         company_score = avrage_score(reviews, "score")
-    #         return render_template("search_results.html", reviews=reviews,
-    #                                company_score=company_score,
-    #                                company=company,
-    #                                company_name=session["company_name"])
-
-    #     else:
-    #         return render_template("search_results.html", company=company)
-
-    # flash("Ooops!!! We Couldn't Find Any Results For {}".format(query),
-    #       "category2")
     return render_template(
         "companies_results.html", companies=companies, query=query)
 
 
-@app.route("/add_review", methods=["POST", "GET"])
-def add_review():
+@app.route("/reviews_results/<company_id>", methods=["POST", "GET"])
+def reviews_results(company_id):
+    """ View reviews """
+    company = mongo.db.companies.find_one({"_id": ObjectId(company_id)})
+    reviews = list(mongo.db.reviews.find({"company_id": ObjectId(company_id)}))
+    company_score = avrage_score(reviews, "score")
+    if reviews:
+        for review in reviews:
+            review["username"] = ""
+            for key, value in review.items():
+                if key == "user_id":
+                    user = mongo.db.users.find_one(
+                        {"_id": ObjectId(value)})
+                    if user:
+                        user_name = user = mongo.db.users.find_one(
+                            {"_id": ObjectId(value)})["username"]
+                        review["username"] = user_name
+                    else:
+                        review["username"] = "User"
+
+    return render_template("reviews_results.html", company=company,
+                           reviews=reviews, company_score=company_score)
+
+
+@app.route("/add_review/<company_id>", methods=["POST", "GET"])
+def add_review(company_id):
     """ add review page """
     # creating date varibale
     time_created = time_to_string()
-    if session['user'] and request.method == "POST":
-        reviews = mongo.db.companies.find_one(
-            {"company_name": session["company_name"]})
-        reviews_count = reviews["reviews_count"]
-        company_id = reviews["_id"]
+    company = mongo.db.companies.find_one(
+            {"_id": ObjectId(company_id)})
+    if request.method == "POST":
+        reviews_count = company["reviews_count"]
+        company_id = company["_id"]
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         added_review = {
             "user_id": user_id,
@@ -186,11 +192,11 @@ def add_review():
                 }
         mongo.db.reviews.insert_one(added_review)
         mongo.db.companies.update_one(
-            {"company_name": session["company_name"]}, new_review_count)
-        flash("Review Added successfully.", "category1")
-        return render_template("add_review.html")
+            {"_id": company_id}, new_review_count)
+        flash("Review Added successfully.", "category2")
+        return render_template("search_error.html")
 
-    return render_template("add_review.html")
+    return render_template("add_review.html", company=company)
 
 
 @app.route("/add_company", methods=["POST", "GET"])
@@ -247,14 +253,15 @@ def delete_review(review_id):
 
     mongo.db.companies.update_one(
         {"company_name": session["company_name"]}, new_review_count)
-    flash("Review Successfully Deleted", "category3")
-    return redirect(url_for("home"))
+    flash("Review Successfully Removed", "category2")
+    return render_template("search_error.html")
 
 
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """ Edit review page """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+    # mongo.db.reviews.db.romove({"user_id": user_id})
     flash("Account Deleted Successfuly", "category3")
     session.pop("user")
     return redirect(url_for("home"))
@@ -346,7 +353,7 @@ def edit_user(user_id):
 
 @app.route("/edit_password/<user_id>", methods=["POST", "GET"])
 def edit_password(user_id):
-    # """ Edit password """
+    """ Edit password """
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     time_updated = time_to_string()
     old_password = "password"

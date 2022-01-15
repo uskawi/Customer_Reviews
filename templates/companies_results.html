@@ -33,16 +33,16 @@
     <div class="row">
         <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
             <div class="text-darken-4 search-company-results">
-                <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews</p>
+                <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews </p>
                 <p>Company Name:<span class="upper-case">{{ company.company_name }}</span></p>
-                <p>Description:
-                    <span> {{ company.description }} </span></p>
+                <p>Number of Reviews:<span>{{ company.reviews_count }}</span></p>
+                <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
             </div>
             <div class="add-review-btn">
                 <!-- <a class="white-text" href=""> Add A Review <i
                     class="fas fa-sign-in-alt"></i></a> -->
                 <button id="add-review-button" class="btn light-blue accent-4" type="button">
-                    <a class="white-text" href="{{ url_for('add_review') }}">See Reviews<i
+                    <a class="white-text" href="{{ url_for('reviews_results', company_id=company._id) }}">See Reviews<i
                             class="fas fa-sign-in-alt"></i></a>
                 </button>
             </div>
