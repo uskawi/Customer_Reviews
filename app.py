@@ -274,6 +274,13 @@ def delete_review(review_id):
     return render_template("messages.html")
 
 
+@app.route("/delete_company/<company_id>")
+def delete_company(company_id):
+    mongo.db.companies.remove({"_id": ObjectId(company_id)})
+    flash("Company Deleted. Thank you for being with us.", "category2")
+    return render_template("messages.html")
+
+
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """ Edit review page """

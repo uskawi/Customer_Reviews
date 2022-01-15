@@ -18,7 +18,7 @@
             </div>
             <div class="add-review-btn">
                 <button id="add-review-button" class="btn light-blue accent-4" type="button">
-                    <a class="white-text" href="">Delete Company<i
+                    <a class="white-text" href="{{ url_for('delete_company', company_id=company._id) }}">Delete Company<i
                             class="fas fa-sign-in-alt"></i></a>
                 </button>
             </div>
