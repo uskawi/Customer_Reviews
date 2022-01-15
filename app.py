@@ -194,7 +194,7 @@ def add_review(company_id):
         mongo.db.companies.update_one(
             {"_id": company_id}, new_review_count)
         flash("Review Added successfully.", "category2")
-        return render_template("search_error.html")
+        return render_template("messages.html")
 
     return render_template("add_review.html", company=company)
 
@@ -204,17 +204,18 @@ def add_company():
     """ Add company page """
     # creating date varibale
     time_created = time_to_string()
+    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
     if session['user'] and request.method == "POST":
         added_company = {
-            "username": session['user'],
+            "user_id": user_id,
             "company_name": request.form.get("company-name").lower(),
             "date_created": time_created,
             "description": request.form.get("description"),
             "reviews_count": 0
         }
         mongo.db.companies.insert_one(added_company)
-        flash("Company Added successfully.", "category1")
-        return redirect(url_for("add_company"))
+        flash("Company Added successfully.", "category2")
+        return render_template("messages.html")
     return render_template("add_company.html")
 
 
@@ -254,7 +255,7 @@ def delete_review(review_id):
     mongo.db.companies.update_one(
         {"company_name": session["company_name"]}, new_review_count)
     flash("Review Successfully Removed", "category2")
-    return render_template("search_error.html")
+    return render_template("messages.html")
 
 
 @app.route("/delete_user/<user_id>")
