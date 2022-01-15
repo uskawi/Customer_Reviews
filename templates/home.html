@@ -50,33 +50,26 @@
     </div>
 
 
-    {% for names in hottest_companies %}
+    {% for company in hottest_companies %}
     <div class="row">
         <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 hot-company">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <h5><i class="fas fa-fire orange-text text-darken-1"></i><a class="black-text" href="{{ url_for('views_hottest_companies', company_name=names.company_name) }}"> Company Name:<span
-                                class="upper-case blue-text">{{ names.company_name }}</span></a></h5>
+                    <h5><i class="fas fa-fire orange-text text-darken-1"></i><a class="black-text" href="{{ url_for('reviews_results', company_id=company._id) }}"> Company Name:<span
+                                class="upper-case blue-text">{{ company.company_name }}</span></a></h5>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <p>Number of reviews: <span class="count">{{ names.reviews_count}}</span></p>
+                    <p>Number of reviews: <span class="count">{{ company.reviews_count}}</span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <p>Description: <span class="upper-case">{{ names.description}}</span></p>
+                    <p>Description: <span class="upper-case">{{ company.description}}</span></p>
                 </div>
             </div>
-            <!-- <hr> -->
-            <!-- <div class="row">
-                <div class="col s10 offset-s1">
-                    <a href="{{ url_for('views_hottest_companies', company_name=names.company_name) }}">Go to <span
-                            class="upper-case blue-text">{{ names.company_name }}</span></a>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

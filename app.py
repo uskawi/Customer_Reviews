@@ -134,14 +134,14 @@ def profile(username):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """ company search """
-
-    query = request.form.get("company-name")
-    companies = list(mongo.db.companies.find({"$text": {"$search": query}}))
+    if request.method == "POST":
+        query = request.form.get("company-name")
+        companies = list(mongo.db.companies.find({"$text": {"$search": query}}))
     return render_template(
-        "companies_results.html", companies=companies, query=query)
+        "companies_results.html", companies=companies, query=query)  
 
 
-@app.route("/reviews_results/<company_id>", methods=["POST", "GET"])
+@app.route("/reviews_results/<company_id>")
 def reviews_results(company_id):
     """ View reviews """
     company = mongo.db.companies.find_one({"_id": ObjectId(company_id)})
@@ -209,7 +209,8 @@ def add_company():
     user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
     if session["user"] and request.method == "POST":
         if existing_company:
-            flash("Company ''{}'' Already Exists".format(request.form.get("company-name")), "category1")
+            flash("Company ''{}'' Already Exists".
+                  format(request.form.get("company-name")), "category1")
             return render_template("add_company.html")
         else:
             added_company = {
@@ -248,9 +249,10 @@ def edit_review(review_id):
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
     """ Delete review page """
-    company_id = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})["company_id"]
+    company_id = mongo.db.reviews.find_one(
+        {"_id": ObjectId(review_id)})["company_id"]
     reviews_count = mongo.db.companies.find_one(
-            {"_id": ObjectId(company_id)})["reviews_count"] 
+            {"_id": ObjectId(company_id)})["reviews_count"]
     # add reviews counter to reviewed company
     new_review_count = {
             "$set": {

@@ -39,8 +39,6 @@
                 <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
             </div>
             <div class="add-review-btn">
-                <!-- <a class="white-text" href=""> Add A Review <i
-                    class="fas fa-sign-in-alt"></i></a> -->
                 <button id="add-review-button" class="btn light-blue accent-4" type="button">
                     <a class="white-text" href="{{ url_for('reviews_results', company_id=company._id) }}">See Reviews<i
                             class="fas fa-sign-in-alt"></i></a>
