@@ -31,137 +31,138 @@
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('for_business') }}">For Businesses</a></li>
                     {% if session.user %}
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                        <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user"></i></a>
+                    </li>
                     {% else %}
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
         <!-- mobile sidenav -->
-        <ul class="sidenav grey lighten-5" id="mobile-demo">
-            <div class="li-wrapper">
+        <ul class="sidenav  grey darken-3" id="mobile-demo">
                 <li><a class="black-text" href="{{ url_for('home')}}">Home</a></li>
                 <li><a class="black-text" href="{{ url_for('for_business') }}">For Businesses</a></li>
-            {% if session.user %}
+                {% if session.user %}
                 <li><a class="black-text" href="{{ url_for('logout') }}">Logout</a></li>
-                <li><a class="black-text bottom-border" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            {% else %}
+                <li><a class="black-text bottom-border"
+                        href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                {% else %}
                 <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
                 <li><a class="black-text bottom-border" href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
-            </div>
+                {% endif %}
         </ul>
     </header>
     <section>
         <!-- flash messages -->
         {% with messages = get_flashed_messages(category_filter=["category1"]) %}
-            {% if messages %}
-                {% for message in messages %}
-                   <div class="row">
-                       <h4 class=" white-text center-align light-blue accent-4">
-                           {{ message }}
-                       </h4>
-                   </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row">
+            <h4 class=" white-text center-align light-blue accent-4">
+                {{ message }}
+            </h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-        <footer class="page-footer grey darken-4">
-            <div class="wrapper-container">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="col s12">
-                                <h5 class="white-text footer-heading"><i
-                                        class="fas fa-star green-text"></i><span>CustomerReviews</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <p class="grey-text text-lighten-4">Whether you need reviews for your services, products, or
-                            business locations — Customer Reviews help you drive more traffic from paid and organic search
-                            results, and make the purchasing decision easy once those shoppers get to your site..</p>
-                    </div>
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="col s12">
-                                <h5 class="white-text footer-heading">Join Us on Social Media</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <ul>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text" href="https://www.facebook.com/" target="_blank" aria-label="facebook" rel="noreferrer"><i
-                                                class="fab fa-facebook-f"></i></a>
-                                    </li>
-                                </div>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text"href="https://twitter.com/?lang=en" target="_blank" aria-label="youtube" rel="noreferrer"><i class="fab fa-twitter"></i></a></li>
-                                </div>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text" href="https://www.youtube.com " target="_blank" aria-label="youtube" rel="noreferrer"><i class="fab fa-youtube"></i></a>
-                                    </li>
-                                </div>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text"  href="https://www.instagram.com/" target="_blank" aria-label="Instagram" rel="noreferrer"><i class="fab fa-instagram"></i></a></li>
-                                </div>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text" href="https://www.pinterest.ie/" target="_blank" aria-label="youtube" rel="noreferrer"><i class="fab fa-pinterest-p"></i></a></li>
-                                </div>
-                                <div class="col m2 s4">
-                                    <li><a class="white-text" href="https://www.linkedin.com/feed/" target="_blank" aria-label="youtube" rel="noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 footer-links">
+    <footer class="page-footer grey darken-4">
+        <div class="wrapper-container">
+            <div class="row">
+                <div class="col s12">
                     <div class="row">
                         <div class="col s12">
-                            <h5 class="white-text footer-heading">Navigation</h5>
+                            <h5 class="white-text footer-heading"><i
+                                    class="fas fa-star green-text"></i><span>CustomerReviews</span>
+                            </h5>
+                        </div>
+                    </div>
+                    <p class="grey-text text-lighten-4">Whether you need reviews for your services, products, or
+                        business locations — Customer Reviews help you drive more traffic from paid and organic search
+                        results, and make the purchasing decision easy once those shoppers get to your site..</p>
+                </div>
+                <div class="col s12 social-media">
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="white-text footer-heading">Join Us on Social Media</h5>
                         </div>
                     </div>
                     <div class="row">
-                        <ul>
-                            <div class="col m3 s5 offset-s1">
-                                <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
-                            </div>
-                            <div class="col m3 s6">
-                                <li><a class="white-text inline_block" href="{{ url_for('for_business') }}"><span>For</span>  Businesses</a></li>
-                            </div>
-                            {% if session.user %}
-                                <div class="col m3 s5 offset-s1">
-                                    <li><a class="white-text" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                                </div>
-                                <div class="col m3 s6">
-                                    <li><a class="white-text" href="{{ url_for('logout') }}">Logout</a></li>
-                                </div>
-                            {% else %}
-                                <div class="col m3 s6">
-                                    <li><a class="white-text" href="{{ url_for('register') }}">Register</a></li>
-                                </div>
-                                <div class="col m3 s6">
-                                    <li><a class="white-text" href="{{ url_for('login') }}">Login</a></li> 
-                                </div>
-                            {% endif %}
-                        </ul>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://www.facebook.com/" target="_blank" aria-label="facebook"
+                                rel="noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://twitter.com/?lang=en" target="_blank"
+                                aria-label="youtube" rel="noreferrer"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://www.youtube.com " target="_blank" aria-label="youtube"
+                                rel="noreferrer"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://www.instagram.com/" target="_blank"
+                                aria-label="Instagram" rel="noreferrer"><i class="fab fa-instagram"></i></a>
+
+                        </div>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://www.pinterest.ie/" target="_blank" aria-label="youtube"
+                                rel="noreferrer"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                        <div class="col m2 s4">
+                            <a class="white-text" href="https://www.linkedin.com/feed/" target="_blank"
+                                aria-label="youtube" rel="noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="footer-copyright grey darken-3">
-                <div class="container">
-                    © <span id="copyright"></span> Copyright <i class="fas fa-star green-text"></i>CustomerReviews
+            <div class="col s12 footer-links">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="white-text footer-heading">Navigation</h5>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col m3 s5 offset-s1 footer-nav">
+                                <a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+                        </div>
+                        <div class="col m3 s6 footer-nav">
+                                <a class="white-text inline_block" href="{{ url_for('for_business') }}"><span>For</span>
+                                    Businesses</a>
+                        </div>
+                        {% if session.user %}
+                        <div class="col m3 s5  offset-s1 footer-nav">
+                                <a class="white-text"
+                                    href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                        </div>
+                        <div class="col m3 s6 footer-nav">
+                                <a class="white-text" href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                        {% else %}
+                        <div class="col m3 s5  offset-s1 footer-nav">
+                                <a class="white-text" href="{{ url_for('register') }}">Register</a>
+                        </div>
+                        <div class="col m3 s6 footer-nav">
+                                <a class="white-text" href="{{ url_for('login') }}">Login</a>
+                        </div>
+                        {% endif %}
                 </div>
             </div>
-        </footer>
-  
+        </div>
+        <div class="footer-copyright grey darken-3">
+            <div class="container">
+                © <span id="copyright"></span> Copyright <i class="fas fa-star green-text"></i>CustomerReviews
+            </div>
+        </div>
+    </footer>
+
     <!-- JQuerie -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

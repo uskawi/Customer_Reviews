@@ -102,10 +102,11 @@ a.brand-logo span {
 
 .sidenav {
     height: 320px;
+    padding-top:60px;
 }
 
-.li-wrapper {
-    margin-top: 50px;
+.sidenav li {
+    background-color: #f5f0f0;
 }
 
 .sidenav li a {
@@ -221,6 +222,7 @@ nav ul li:hover {
     font-weight: 500;
     font-size: 20px;
     color: #000;
+    margin-top: 0;
 }
 
 
@@ -329,16 +331,6 @@ nav ul li:hover {
 
 .search-comapany-container {
     position: relative;
-    /* height: 250px; */
-}
-
-.search-company-results {
-    /* width: 100%;
-    height: 100%; */
-    /* position: absolute; */
-    /* left: 20px; */
-    /* top: 0; */
-    
 }
 
 .search-company-results p {
@@ -536,16 +528,32 @@ nav ul li:hover {
     text-align: center;
 }
 
-.footer-links li {
-    margin-left: 20%;
-    margin-bottom: 20px;
+.social-media a {
+    margin-left: 30px;
 }
 
-.page-footer li a i {
-    font-size: 160%;
-    margin-left: 25%;
+.social-media i {
+    font-size: 150%;
     margin-top: 20px;
 }
+
+.footer-links {
+    margin-left: 15%;
+}
+
+.footer-links .row .col {
+    height: 35px;
+    line-height: 35px;
+}
+
+.footer-links .row .col a{
+   height: 30px;
+   width: 20px;
+   margin: 0;
+   padding: 0;
+}
+
+
 
 /* Media query */
 
@@ -589,6 +597,8 @@ nav ul li:hover {
     .for_business-heading {
         top: 20%;
     }
+
+
 }
 
 
@@ -648,6 +658,11 @@ nav ul li:hover {
         display: none;
         margin-left: 0;
     }
+
+    .footer-links {
+        margin-left: 0;
+    }
+
 
 }
 
@@ -767,8 +782,8 @@ nav ul li:hover {
     }
 
     /* footer */
-    .footer-links li {
-        margin-left: 30%;
+    .footer-links  {
+        margin-left: 80px;
     }
 
 }
