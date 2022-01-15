@@ -26,21 +26,13 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     """ home page """
+    #finding most reviewed companies
     hottest_companies = mongo.db.companies.find().sort(
             "reviews_count", -1).limit(4)
     company_counter = 0
     return render_template("home.html",
                            hottest_companies=hottest_companies,
                            company_counter=company_counter)
-
-
-@app.route("/views_hottest_companies/<company_name>")
-def views_hottest_companies(company_name):
-    """ Hottest companies"""
-    company = mongo.db.companies.find_one({"company_name": company_name})
-    reviews = list(mongo.db.reviews.find({"company_name": company_name}))
-    return render_template("search_results.html",
-                           company=company, reviews=reviews)
 
 
 @app.route("/for_business")
@@ -55,6 +47,7 @@ def register():
     if request.method == "POST":
         #  creating date varibale
         time_created = time_to_string()
+        #  check if user already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         #  check if email already exists in db
@@ -248,7 +241,8 @@ def edit_review(review_id):
             }
         mongo.db.reviews.update_many(
             {"_id": ObjectId(review_id)}, tobe_updated)
-        flash("Review updated successfully.", "category1")
+        flash("Review updated successfully.", "category2")
+        return render_template("messages.html")
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     return render_template("edit_review.html", review=review)
 
@@ -285,7 +279,6 @@ def delete_company(company_id):
 def delete_user(user_id):
     """ Edit review page """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
-    # mongo.db.reviews.db.romove({"user_id": user_id})
     flash("Account Deleted Successfuly", "category3")
     session.pop("user")
     return redirect(url_for("home"))
@@ -295,7 +288,6 @@ def delete_user(user_id):
 def edit_user(user_id):
     """ Edit user """
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    old_username = user["username"]
     time_updated = time_to_string()
     if request.method == "POST":
         username = request.form.get("username").lower()
@@ -303,6 +295,7 @@ def edit_user(user_id):
         existing_username = mongo.db.users.find_one(
             {"username": username})
         existing_email = mongo.db.users.find_one({"email": email})
+        # Update both username and email
         if not existing_username and not existing_email:
 
             update_user = {
@@ -312,23 +305,12 @@ def edit_user(user_id):
                     "email": email,
                     }
                 }
-            mongo.db.users.update_many(
-                {"_id": ObjectId(user_id)}, update_user)
-            # update username in all reviews added by the update_user
-            reviews_added_by_update_user = {
-                "$set": {
-                    "username": username,
-                    }
-                }
-            mongo.db.reviews.update_many(
-                {"username": old_username}, reviews_added_by_update_user)
-            session.pop("user")
+            new_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
             flash(
-                "User name and email updated successfully."
-                "Please login again.",
+                "User name and email updated successfully.",
                 "category1")
-            return redirect(url_for("login"))
-
+            return render_template("profile.html", user=new_user)
+        # Update  username only
         elif not existing_username and existing_email:
 
             update_user = {
@@ -339,19 +321,10 @@ def edit_user(user_id):
                 }
             mongo.db.users.update_many(
                 {"_id": ObjectId(user_id)}, update_user)
-            # update username in all reviews added by the update_user
-            reviews_added_by_update_user = {
-                "$set": {
-                    "username": username,
-                    }
-                }
-            mongo.db.reviews.update_one(
-                {"username":  old_username}, reviews_added_by_update_user)
-            session.pop("user")
-            flash("Username updated successfully. Please login again.",
-                  "category1")
-            return redirect(url_for("login"))
-
+            new_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+            flash("Username updated successfully. ", "category1")
+            return render_template("profile.html", user=new_user)
+        # Update email only
         if existing_username and not existing_email:
 
             update_user = {
@@ -362,11 +335,9 @@ def edit_user(user_id):
                 }
             mongo.db.users.update_many(
                 {"_id": ObjectId(user_id)}, update_user)
-            flash(
-                "email updated successfully. Please login again.",
-                "category1")
-            return redirect(url_for("login"))
-
+            new_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+            flash("Email updated successfully. ", "category1")
+            return render_template("profile.html", user=new_user)
         else:
             flash("Sorry but we could't update your details", "category1")
             return redirect(url_for("edit_user",
