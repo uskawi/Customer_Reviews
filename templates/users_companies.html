@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if companies|length > 0 %}
+<div id="review-search">
+    <h2 class="black-text text-darken-4 center-align review-search-heading">Results for <span class="found-name">
+            {{ query }}
+        </span></h2>
+    {% for company in  companies %}
+    <div class="row">
+        <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
+            <div class="text-darken-4 search-company-results">
+                <p class="blue-text"><i class="fas fa-star green-text"></i>CustomerReviews </p>
+                <p>Company Name:<span class="upper-case">{{ company.company_name }}</span></p>
+                <p>Number of Reviews:<span>{{ company.reviews_count }}</span></p>
+                <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
+            </div>
+            <div class="add-review-btn">
+                <button id="add-review-button" class="btn light-blue accent-4" type="button">
+                    <a class="white-text" href="">Delete Company<i
+                            class="fas fa-sign-in-alt"></i></a>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="center-align no-reviews-heading">
+        <h4>You didn't add any company Yet</h4>
+    </div>
+
+</div>
+{% endif %}
+
+
+{% endblock %}

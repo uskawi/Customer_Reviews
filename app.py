@@ -27,7 +27,7 @@ mongo = PyMongo(app)
 def home():
     """ home page """
     hottest_companies = mongo.db.companies.find().sort(
-            "reviews_count", -1).limit(3)
+            "reviews_count", -1).limit(4)
     company_counter = 0
     return render_template("home.html",
                            hottest_companies=hottest_companies,
@@ -131,14 +131,21 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/users_companies/<user_id>")
+def users_companies(user_id):
+    companies = list(mongo.db.companies.find({"user_id": ObjectId(user_id)}))
+    return render_template("users_companies.html", companies=companies)
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """ company search """
     if request.method == "POST":
         query = request.form.get("company-name")
-        companies = list(mongo.db.companies.find({"$text": {"$search": query}}))
+        companies = list(mongo.db.companies.find(
+                        {"$text": {"$search": query}}))
     return render_template(
-        "companies_results.html", companies=companies, query=query)  
+        "companies_results.html", companies=companies, query=query)
 
 
 @app.route("/reviews_results/<company_id>")
