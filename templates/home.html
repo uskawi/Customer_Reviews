@@ -4,11 +4,11 @@
 <div class="header-image">
     <a href="{{ url_for('home') }}" class="small-screen-logo white-text"><i
             class="fas fa-star"></i><span>CustomerReviews</span></a>
-    <form class="serach-form" method="POST" action="{{url_for('search')}}">
+    <form class="search-form" method="POST" action="{{url_for('search')}}">
         <label class="search-bar-label" name="company-name" for="company-name">Company Name</label>
         <div class="input-wrapper">
             <input type="text" id="company-name" name="company-name">
-            <button id="serach-submit" class="serch-button btn light-blue accent-4" type="submit required"
+            <button id="serach-submit" class="search-button btn light-blue accent-4" type="submit required"
                 name="action"><span>Search</span>
                 <i class="fas fa-sign-in-alt sign-in-icon"></i><i class="fas fa-search search-icon"></i>
             </button>
@@ -26,7 +26,7 @@
 
 
 <div class="hottest-section-heding center-align">
-    <h4 class="blue-text text-lighten-1">Hotest Companies<i class="fas fa-fire orange-text text-darken-1"></i></h4>
+    <h2 class="blue-text text-lighten-1">Hotest Companies<i class="fas fa-fire orange-text text-darken-1"></i></h2>
 </div>
 
 
@@ -42,8 +42,8 @@
         <div class="col m8 s10 offset-m2 offset-s1 grey lighten-5 hot-company">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <h5><i class="fas fa-fire orange-text text-darken-1"></i><a class="black-text" href="{{ url_for('reviews_results', company_id=company._id) }}"> Company Name:<span
-                                class="upper-case blue-text">{{ company.company_name }}</span></a></h5>
+                    <h3><i class="fas fa-fire orange-text text-darken-1"></i><a href="{{ url_for('reviews_results', company_id=company._id) }}"> Company Name:<span
+                                class="upper-case blue-text">{{ company.company_name }}</span></a></h3>
                 </div>
             </div>
             <hr>
