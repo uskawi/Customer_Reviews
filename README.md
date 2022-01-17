@@ -1,4 +1,4 @@
-<h1 align="center">CusromerReviews</h1>
+<h1 align="center">CustomerReviews</h1>
 
 [View the live project here.](http://customer-reviews-app.herokuapp.com/home)
 
