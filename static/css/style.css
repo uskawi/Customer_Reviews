@@ -14,7 +14,7 @@ h4,
 h5,
 h6 {
     font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 p {
@@ -524,9 +524,6 @@ nav ul li:hover {
     margin-top: 20px;
 }
 
-.footer-links {
-    margin-left: 15%;
-}
 
 .footer-links .row .col {
     height: 35px;
@@ -534,10 +531,7 @@ nav ul li:hover {
 }
 
 .footer-links .row .col a{
-   height: 30px;
-   width: 20px;
-   margin: 0;
-   padding: 0;
+   margin-left: 30px;
 }
 
 
@@ -646,7 +640,7 @@ nav ul li:hover {
         margin-left: 0;
     }
 
-    .footer-links {
+    .footer-links .row .col a{
         margin-left: 0;
     }
 

@@ -118,7 +118,7 @@ def profile(username):
         {"username": session["user"]})["username"]
     user = mongo.db.users.find_one({"username": username})
 
-    if session["user"]:
+    if user:
         return render_template("profile.html", user=user)
 
     return redirect(url_for("login"))
@@ -138,8 +138,11 @@ def search():
         query = request.form.get("company-name")
         companies = list(mongo.db.companies.find(
                         {"$text": {"$search": query}}))
+        if companies:
+            return render_template(
+                "companies_results.html", companies=companies, query=query)
     return render_template(
-        "companies_results.html", companies=companies, query=query)
+                "companies_results.html")
 
 
 @app.route("/reviews_results/<company_id>")

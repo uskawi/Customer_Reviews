@@ -12,8 +12,7 @@
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" type=text/css />
     <!-- link Materialize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        typ="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- link Css file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
@@ -28,7 +27,7 @@
             <div class="nav-wrapper grey darken-4">
                 <a href="{{ url_for('home') }}" class="brand-logo"><i
                         class="fas fa-star"></i><span>CustomerReviews</span></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars toggle"></i></a>
+                <a href="#" data-target="mobile-demo" title="sidenavtrigger" class="sidenav-trigger"><i class="fas fa-bars toggle"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('for_business') }}">For Businesses</a></li>
@@ -131,16 +130,16 @@
                         <h5 class="white-text footer-heading">Navigation</h5>
                     </div>
                 </div>
-                <div class="row">
-                        <div class="col m3 s5 offset-s1 footer-nav">
-                                <a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+                <div class="row footer-nav">
+                        <div class="col m3 s5 offset-s1 ">
+                                <a class="white-text" href="{{ url_for('home') }}">Home</a>
                         </div>
-                        <div class="col m3 s6 footer-nav">
+                        <div class="col m3 s6">
                                 <a class="white-text inline_block" href="{{ url_for('for_business') }}"><span>For</span>
                                     Businesses</a>
                         </div>
                         {% if session.user %}
-                        <div class="col m3 s5  offset-s1 footer-nav">
+                        <div class="col m3 s5  offset-s1">
                                 <a class="white-text"
                                     href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                         </div>
@@ -148,10 +147,10 @@
                                 <a class="white-text" href="{{ url_for('logout') }}">Logout</a>
                         </div>
                         {% else %}
-                        <div class="col m3 s5  offset-s1 footer-nav">
+                        <div class="col m3 s5  offset-s1">
                                 <a class="white-text" href="{{ url_for('register') }}">Register</a>
                         </div>
-                        <div class="col m3 s6 footer-nav">
+                        <div class="col m3 s6">
                                 <a class="white-text" href="{{ url_for('login') }}">Login</a>
                         </div>
                         {% endif %}

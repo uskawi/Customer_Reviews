@@ -1,108 +1,264 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">CusromerReviews</h1>
 
-Welcome Jakub Essalhi,
+[View the live project here.](http://customer-reviews-app.herokuapp.com/home)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+CustomerReviews is a website hosting reviews to help consumers shop with confidence and not worry about intrusted service providers. And deliver help for businesses to improve the experiences they offer and earn consumers' trust. 
+<br>
+<br>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+<h2 align="center"><img src="static/images/readmy-images/home.jpg"></h2>
+<br>
+<br>
+<h2 align="center"><img src="static/images/readmy-images/business.jpg"></h2>
 
-## Gitpod Reminders
+## Database Schema
+Mongodb was used to create database for the website.
+<h4 align="center"><img src="static/images/readmy-images/mongo_data.jpg"></h4>
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## User Experience (UX)
 
-`python3 -m http.server`
+-   ### User stories
 
-A blue button should appear to click: _Make Public_,
+    -   #### First Time Visitor Goals
+    -   #### As Consumer and business owner 
+        1. As a first-time visitor, I want to navigate the website intuitively and quickly find what Im looking for.
+    -   #### As Consumer only
+        2. As a first-time visitor, I want to find the answer to my question: if the business I intend to use its services is trustworthy?.
+    -   ##### As Business Owner only
+        2. As a first-time visitor, I want to discover the website and values that it may add to my business.
 
-Another blue button should appear to click: _Open Browser_.
+    -   #### Returning Visitor Goals 
+    -   #### As Consumer and business owner
+        1. As a Returning Visitor, I want to find information about businesses in my local area.
+        2. As a Returning Visitor, I want to browse different business profiles and reviews.
+        3. As a Returning Visitor, I want to find social media links. 
+    -   ##### As  business owner only
+        3. As a Returning Visitor,  I want to be sure that adding my business profile to the website would be the right decision.
+    -   #### Frequent User Goals
+    -   ##### As Consumer only
+        1. As a Frequent User, I want to find information about the most popular businesses in the website.
+        2. As a Frequent User,I want to be able to create an account.
+        3. As a Frequent User,I want to be able to view my profile.
+        4.  As a Frequent User, I want to share my experience with other users by adding reviews.
+        5. As a Frequent User, I want to be able to update and Delete reviews.
+        6. As a Frequent User, I want to edit my details and have the possibility of deleting my account.
+    -   ##### As  business owner only
+        1. As a Frequent User, I want to add my business profile to the website.
+        2. As a Frequent User, I want to delete my business profile if I'm not happy with the values that CustomerReviews is providing.
+    -   ### Design
+    -   #### Colour Scheme
+        -   The three main colors used are black, light grey, and white.
+    -   #### Typography
+         -   The Blink Mac System, Arial Helvetica, and Karla fonts are the main font used throughout the website, with Sans Serif as the fallback.
+    -   #### Imagery
+        -   The Banner images  serves as a user's first glimpse of the website cause of its prominent placement towards the top of a webpage and extends to full-width.
+*   ### Wireframes
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    -   Home Page Wireframe - [View](https://github.com/)
 
-A blue button should appear to click: _Make Public_,
+    -   Mobile Wireframe - [View](https://github.com/)
 
-Another blue button should appear to click: _Open Browser_.
+    -   Contact Us Page Wireframe - [View](https://github.com/)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Features
 
-To log into the Heroku toolbelt CLI:
+-   Responsive on all device sizes
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+-   Interactive elements
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Technologies Used
 
-------
+### Languages Used
 
-## Release History
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [Java Script](https://en.wikipedia.org/wiki/JavaScript)
+-   [Python3](https://www.python.org/)
+-   [MongoDB](https://www.mongodb.com/)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Frameworks, Libraries & Programs Used
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+1. [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+   - Flask was used to build the application's back end.
+1. [materialize 1.0.0:](https://materializecss.com/)
+    - Materialize was used to assist with the responsiveness and styling of the website.
+1. [TinyPNG](https://tinypng.com/)
+    - TinyPNG was used to compress images.
+1. [Google Fonts:](https://fonts.google.com/)
+    - Google fonts were used to import the font Karla  into the style.css file.
+1. [Font Awesome:](https://fontawesome.com/)
+    - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
+1. [jQuery:](https://jquery.com/)
+    - jQuery was used to make the navbar responsive.
+1. [Git](https://git-scm.com/)
+    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/)
+    - GitHub is used to store the projects code after being pushed from Git.
+1. [Heroku:](https://github.com/)
+    - Heroku is used to Deploy the website.
+1. [Paint:](https://support.microsoft.com/en-us/windows/get-microsoft-paint-a6b9578c-ed1c-5b09-0699-4ed8115f9aa9)
+    - Paint was used to resizing images and editing photos for the website.
+1. [Balsamiq:](https://balsamiq.com/)
+    - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Testing
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+<!-- -   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/) -->
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Testing User Stories from User Experience (UX) Section
+-   #### First Time Visitor Goals
+    -   ##### As Consumer and business owner 
+    1.  As a first-time visitor, I want to navigate the website intuitively and quickly find what Im looking for.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+        1. Upon Landing on the site, users are automatically greeted with a clean and easily readable navigation bar to go to the page of their choice. Underneath, there is a Banner Image with Text Explaining the purpose of the website and a search bar where they can start the search.
+        2.  The user has two options: start the search or scroll down and see the hottest companies section.
+    
+    -   ##### As Consumer only
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+    2. As a first-time visitor, I want to find the answer to my question: if the business I intend to use its services is trustworthy?.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+        1. Upon lending on the home page or other pages where first time users can access,first thing users will find is the navigation bar and banner image with a search bar where users can start searching for companies they are interested in to find the answer about their questions from reviews written by other users.
+        2. On the bottom of every page, there is a footer containing a navigation to prevent the user from scrolling up once they want to change the page.
+        3. The user can also scroll to the bottom of any page to locate social media links in the footer.
+    
+    -   ##### As business owner 
+    2. As a first-time visitor, I want to discover the website and values that it may add to my business.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+        1. Once the new visitor lands on the website, he can find a navbar with a link for the For_businesses page and a banner image with the search bar.
+        2. The new user has two options to navigate through the website and see other businesses' profiles and reviews or go to the For_business page to find the benefits of adding his business profile to the website.
+        3. The user can also scroll to the bottom of any page in the site to locate social media links in the footer.
+        
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+-   #### Returning Visitor Goals
+-   ##### As Consumer and business owner
+    1. As a Returning Visitor, I want to find information about businesses in my local area.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+        1. I want to search for businesses in my local area that I already have an opinion about to compare with other opinions. 
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+    2.  As a Returning Visitor, I want to browse different business profiles and reviews.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+        1. I want to browse businesses profiles, read reviews, find out more about companies that I know or heard about.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+     3. As a Returning Visitor, I want to find social media links. t
 
-------
+        1. The social media pages can be found at the footer of every page and open a new tab for the user. More information can be found on the social media pages about the website and businesses listed. Also, business owners and consumers can defend their points of view on social media pages and add more content relating to the businesses.
 
-## FAQ about the uptime script
+-   ##### As  business owner only
+    3. As a Returning Visitor,  I want to be sure that adding my business profile to the website would be the right decision.
 
-**Why have you added this script?**
+        1.  I want to browse other businesses' profiles and reviews, especially those I know, to see if the reviews would be a good option for my business and wouldn't harm my business reputation.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+-   #### Frequent User Goals
+-   ##### As Consumer only
+    1. As a Frequent User, I want to find information about the most popular businesses in the website.
 
-**How will this affect me?**
+        1. Every time I visit the website I want to find more about mot popular companies. The Hottest companies section  page allows users to check most reviewed companies on the CustomerReviews website. 
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+    2. As a Frequent User,I want to be able to create an account.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+        I want to create an account to share my experience with other users. On the navbar, there is a link Register. By clicking it, the user is redirected to the registration page. After filling all the required fields of  and submitting the the Registration form, the user's account is created.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
 
-**So….?**
+    3. As a Frequent User,I want to be able to view my profile.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+        1.  After Login, the user is redirected to his profile page and can view his details.
 
-**Can I opt out?**
+    4. As a Frequent User, I want to share my experience with other users by adding reviews.
+        
+        1. After searching for a given company, the user is redirected to a company profile page and access all the reviews. Only logged-in users can share their experience with the given company by clicking the Add_review button; The user is redirected to the Add_review page where he has to provide a score ranging from 1 to 10, the title for his review, then write the review and by submitting the Add_review form: the review is added, and it is visible to all users.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+    5. As As a Frequent User, I want to be able to update and Delete reviews.
+
+       1. The user who wrote a review can see two buttons Delete and Edit, on his review. By pressing the Delete button, the review is deleted. Moreover, by pressing the Edit button user is redirected to the Edit_review page, where he has to fill a form. After submitting the form, the review is updated.
+    
+    6. As a Frequent User, I want to edit my Details and have the possibility of deleting my account.
+
+    1. There are links to edit Details, edit password, and delete the account on the profile page.
+
+-   ##### As  business owner only
+ 1. As a Frequent User, I want to add my business profile to the website.
+     
+    1.   At the banner of the For_business page, there is an Add_business button; by clicking on it, the user is redirected to fill Add_company form, where he has to provide the company name and description by pressing submit, the company profile is added to the CustomerReviews database. The company is visible to all users. 
+    2. The user who added a business can remove it from the website by going to his profile page and clicking on the link Company Added By  User that will redirect him to the page Users_companies and by clicking at Delete_company button, the company will be removed from the page. 
+
+### Further Testing
+
+-   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge Vivaldi and Safari browsers.
+-   The website was viewed on a variety of devices such as Desktop, Laptop, Phone, Tablet.
+-   A large amount of testing was done to ensure that all pages were linking correctly.
+-   Family members were asked to review the site. 
+
+### Known Bugs
+
+
+## Deployment
+### Heroku
+
+The project was deployed to [Heroku](https://id.heroku.com/login) using the following steps...
+
+1. Created an account in Heroku.
+2. Created a new app in Heroku.
+3. Create a remote master branch by connecting GitHub to Heroku. Click on connect to Github Icon on Heroku app.
+4. Create a requirement.txt file and push it to your respiratory on Github
+5. Create a Procfile and push it to your  respiratory on Github
+6. In Heroku, inside the settings, click Config Vars, and set IP, PORT, Secret key, and environment variable MONGO_URI.
+7. Click 'Open app,' and the website is deployed.
+
+### Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
-**Anything more?**
+7. Press Enter. Your local clone will be created.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
 
----
+## Credits
 
-Happy coding!
+### Code
+
+-   The full-screen hero image code came from this [StackOverflow post](https://stackoverflow.com)
+
+-   [materialize 1.0.0](https://materializecss.com/): Materialize Library used throughout the project mainly to make site responsive using.
+
+-   [MDN Web Docs](https://developer.mozilla.org/) : For Pattern Validation code. Code was modified to better fit my needs and to match an Irish phone number layout to ensure correct validation. Tutorial Found [Here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel#Pattern_validation)
+
+-   [thispointer](https://thispointer.com/python-how-to-convert-datetime-object-to-string-using-datetime-strftime/): The Python code to convert DateTime to string is credited to thispointer.com
+
+### Content
+### Media
+
+-   The banner image on the main page and other pages is credited to Angela Roma. The image is posted in Pexel.
+-   The banner image on the main page and other pages is credited to Burak Kebapci. The image is posted in Pexel.
+
+### Acknowledgements
+
+-   My Mentor Caleb Mbakwe for continuous helpful feedback.
+
+-   Tutor support at Code Institute for their support.
