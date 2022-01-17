@@ -11,7 +11,7 @@ CustomerReviews is a website hosting reviews to help consumers shop with confide
 <br>
 <h2 align="center"><img src="static/images/readmy-images/business.jpg"></h2>
 
-## Database Schema
+## Database 
 Mongodb was used to create database for the website.
 <h4 align="center"><img src="static/images/readmy-images/mongo_data.jpg"></h4>
 
@@ -54,11 +54,11 @@ Mongodb was used to create database for the website.
         -   The Banner images  serves as a user's first glimpse of the website cause of its prominent placement towards the top of a webpage and extends to full-width.
 *   ### Wireframes
 
-    -   Home Page Wireframe - [View](https://github.com/)
+    <!-- -   Home Page Wireframe - [View](https://github.com/)
 
     -   Mobile Wireframe - [View](https://github.com/)
 
-    -   Contact Us Page Wireframe - [View](https://github.com/)
+    -   Contact Us Page Wireframe - [View](https://github.com/) -->
 
 ## Features
 
@@ -99,7 +99,7 @@ Mongodb was used to create database for the website.
 1. [Paint:](https://support.microsoft.com/en-us/windows/get-microsoft-paint-a6b9578c-ed1c-5b09-0699-4ed8115f9aa9)
     - Paint was used to resizing images and editing photos for the website.
 1. [Balsamiq:](https://balsamiq.com/)
-    - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
+    - Balsamiq was used to create the during the design process.
 
 ## Testing
 
