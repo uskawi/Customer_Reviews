@@ -17,7 +17,7 @@
     <div class="header-heading">
         <h1>Every review tells a story.</h1>
     </div>
-</div>>
+</div>
 <div class="few-words-wrapper">
     <div class="few-words">
         <p><span class="balck-text">Sharing your experiences helps others make better choices</p>
@@ -38,7 +38,7 @@
                 <p>Number of Reviews:<span>{{ company.reviews_count }}</span></p>
                 <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
             </div>
-                <a  class="btn white-text multifunctional-btn" 
+                <a  class="btn light-blue accent-4 white-text multifunctional-btn" 
                     href="{{ url_for('reviews_results', company_id=company._id) }}">See Reviews
                     </a>
         </div>

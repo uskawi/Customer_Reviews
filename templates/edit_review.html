@@ -17,14 +17,14 @@
         <div class="row">
             <div class="col m8 s10 offset-m2 offset-s1">
                 <label for="title">title</label>
-                <input id="title" type="text" value="{{ review.review_title }}" name="title" class="validate"  required>
+                <input id="title" type="text" value="{{ review.review_title }}" name="title" class="validate" minlength="1" maxlength="30"  required>
             </div>
         </div>
         <!-- review content -->
         <div class="row">
             <div class="input-field col s12">
                 <label for="review-text">Review</label>
-                <textarea  name="review-text"  id="review-text" cols="30" rows="100"  minlength="40" maxlength="1000"  class="validate" required>{{- review.review_content -}}</textarea>
+                <textarea  name="review-text"  id="review-text" cols="30" rows="100"  minlength="10" maxlength="1000"  class="validate" required>{{- review.review_content -}}</textarea>
             </div>
         </div>
         <!-- submit button -->

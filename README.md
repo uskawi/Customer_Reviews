@@ -20,6 +20,7 @@ CustomerReviews is a website hosting reviews to help consumers shop with confide
 
 ## Database 
 Mongodb was used to create database for the website.
+### Database structure
 <h4 align="center"><img src="static/README/mongo_data.jpg"></h4>
 
 ## User Experience (UX)
@@ -46,7 +47,7 @@ Mongodb was used to create database for the website.
         1. As a Frequent User, I want to find information about the most popular businesses in the website.
         2. As a Frequent User,I want to be able to create an account.
         3. As a Frequent User,I want to be able to view my profile.
-        4.  As a Frequent User, I want to share my experience with other users by adding reviews.
+        4. As a Frequent User, I want to share my experience with other users by adding reviews.
         5. As a Frequent User, I want to be able to update and Delete reviews.
         6. As a Frequent User, I want to edit my details and have the possibility of deleting my account.
     -   ##### As  business owner only
@@ -104,21 +105,21 @@ Mongodb was used to create database for the website.
 1. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 1. [GitHub:](https://github.com/)
-    - GitHub is used to store the projects code after being pushed from Git.
+    - GitHub  was used to store the projects code after being pushed from Git.
 1. [Heroku:](https://github.com/)
-    - Heroku is used to Deploy the website.
+    - Heroku  was used to Deploy the website.
 1. [Paint:](https://support.microsoft.com/en-us/windows/get-microsoft-paint-a6b9578c-ed1c-5b09-0699-4ed8115f9aa9)
     - Paint was used to resizing images and editing photos for the website.
 1. [Balsamiq:](https://balsamiq.com/)
-    - Balsamiq was used to create the during the design process.
+    - Balsamiq was used to create the wireframes during the design process.
 
 ## Testing
 
 The W3C Markup Validator and W3C CSS Validator LightHouse and JSHint services were used to validate every page of the project to ensure there were no errors in the project.
 
 ### HTML Testing
-HTML  Tested by using **text Input**. The source code was copied from The browser developer tools and pasted in Html W3C HTML Validator due to a problem with some pages like the profile page could not be checked by URL.
-As the website contains 13 pages, Not all results are added to README.
+HTML  Tested by using **text Input**. The source code was copied from The browser developer tools and pasted in Html W3C HTML Validator due to a problem with some pages like the profile page could not be checked by using URL.
+As the website contains 14 pages, Not all results are added to README.
 
 -   [W3C Markup Validator Home Page](static/README/home_val.jpg) 
 -   [W3C Markup Validator For_Businesses Page](static/README/business_valid.jpg) 
@@ -131,7 +132,7 @@ As the website contains 13 pages, Not all results are added to README.
 -   [JShint](static/README/jshint.jpg) 
 
 ### LightHouse TESTING
-Lighthouse testing was done on chrome developer tools because some pages could not be tested using the browser's extension. All the pages returned similar results as the results on the links above.
+Lighthouse testing was done on chrome developer tools because some pages could not be tested using the Lighthouse browser's extension and returned status 500 during testing. All the pages returned similar results as the results on the links below.
 
 -   [Lighthouse Home Page](static/README/home_LH.jpg) 
 -   [Lighthouse Validator For_Businesses Page](static/README/for_businesses_LH.jpg) 
@@ -171,11 +172,11 @@ Lighthouse testing was done on chrome developer tools because some pages could n
 
         1. I want to search for businesses in my local area that I already have an opinion about to compare with other opinions. 
 
-    2.  As a Returning Visitor, I want to browse different business profiles and reviews.
+    2.  As a Returning Visitor, I want to browse reviews about the different businesses.
 
         1. I want to browse businesses profiles, read reviews, find out more about companies that I know or heard about.
 
-     3. As a Returning Visitor, I want to find social media links. t
+     3. As a Returning Visitor, I want to find social media links.
 
         1. The social media pages can be found at the footer of every page and open a new tab for the user. More information can be found on the social media pages about the website and businesses listed. Also, business owners and consumers can defend their points of view on social media pages and add more content relating to the businesses.
 
@@ -188,20 +189,20 @@ Lighthouse testing was done on chrome developer tools because some pages could n
 -   ##### As Consumer only
     1. As a Frequent User, I want to find information about the most popular businesses in the website.
 
-        1. Every time I visit the website I want to find more about mot popular companies. The Hottest companies section  page allows users to check most reviewed companies on the CustomerReviews website. 
+        1. Every time I visit the website I want to find more about the most popular companies. The Hottest companies section page allows users to check most reviewed companies on the CustomerReviews website. 
 
     2. As a Frequent User,I want to be able to create an account.
 
-        I want to create an account to share my experience with other users. On the navbar, there is a link Register. By clicking it, the user is redirected to the registration page. After filling all the required fields of  and submitting the the Registration form, the user's account is created.
+        1. I want to create an account to share my experience with other users. On the navbar, there is a link to Register. By clicking it, the user is redirected to the registration page. After filling all the required fields and submitting the  Registration Form, an account is created for the user.
 
 
     3. As a Frequent User,I want to be able to view my profile.
 
-        1.  After Login, the user is redirected to his profile page and can view his details.
+        1.  After Login, the user is redirected to profile page and can view his details.
 
     4. As a Frequent User, I want to share my experience with other users by adding reviews.
         
-        1. After searching for a given company, the user is redirected to a company profile page and access all the reviews. Only logged-in users can share their experience with the given company by clicking the Add_review button; The user is redirected to the Add_review page where he has to provide a score ranging from 1 to 10, the title for his review, then write the review and by submitting the Add_review form: the review is added, and it is visible to all users.
+        1. After searching for a given company, the user is redirected to a company profile page and, by clicking on the See_reviews Button, the user access all the reviews. Only logged-in users can add reviews by clicking the Add_review button; The user is redirected to the Add_review page where he has to provide a score ranging from 1 to 10, the title for his review, then write the review and by submitting the Add_review form: the review is added, and it is visible to all users.
 
     5. As As a Frequent User, I want to be able to update and Delete reviews.
 
@@ -214,8 +215,10 @@ Lighthouse testing was done on chrome developer tools because some pages could n
 -   ##### As  business owner only
  1. As a Frequent User, I want to add my business profile to the website.
      
-    1.   At the banner of the For_business page, there is an Add_business button; by clicking on it, the user is redirected to fill Add_company form, where he has to provide the company name and description by pressing submit, the company profile is added to the CustomerReviews database. The company is visible to all users. 
-    2. The user who added a business can remove it from the website by going to his profile page and clicking on the link Company Added By  User that will redirect him to the page Users_companies and by clicking at Delete_company button, the company will be removed from the page. 
+    1.   At the banner of the For_business page, there is an Add_business button; by clicking on it, the user is redirected to fill Add_company form, where he has to provide the company name and description and by pressing submit, the company profile is added to the CustomerReviews database. The company is visible to all users. 
+
+ 2. As a Frequent User, I want to delete my business profile if I'm not happy with the values that CustomerReviews is providing.
+    1. The user who added a business can remove it from the website by going to his profile page and clicking on the link (Company Added By  User) that will redirect him to the page Users_companies and by clicking at Delete_company button, the company will be removed from the website. 
 
 ### Further Testing
 
@@ -225,7 +228,7 @@ Lighthouse testing was done on chrome developer tools because some pages could n
 -   Family members were asked to review the site. 
 
 ### Known Bugs
-
+- When a user submits a form and clicks on the return button on the browser, he is taken to the previews page. However, if he clicks again on the button to return to the page where he submitted the form, he is asked by the browser to submit the form again. Once he clicks an OK button on the alert, the form is submitted for the second time, causing the same data to be added twice to the database. Some form does not allow users to submit data already existing in the database, like the registration form or Add_company form but Add_review or Edit_review forms does.
 
 ## Deployment
 ### Heroku
@@ -289,6 +292,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 -   The banner image on the main page and other pages is credited to Angela Roma. The image is posted in Pexel.
 -   The banner image on the main page and other pages is credited to Burak Kebapci. The image is posted in Pexel.
+- Trustpilot website inspired the Idea of the website and content.
 
 ### Acknowledgements
 
