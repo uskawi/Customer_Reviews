@@ -114,12 +114,12 @@ def logout():
 def profile(username):
     """ Profile page """
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    user = mongo.db.users.find_one({"username": username})
-
-    if user:
-        return render_template("profile.html", user=user)
+    if session["user"]:
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        user = mongo.db.users.find_one({"username": username})
+        if user:
+            return render_template("profile.html", user=user)
 
     return redirect(url_for("login"))
 
@@ -197,8 +197,27 @@ def add_review(company_id):
         mongo.db.reviews.insert_one(added_review)
         mongo.db.companies.update_one(
             {"_id": company_id}, new_review_count)
-        flash("Review Added successfully.", "category2")
-        return render_template("messages.html")
+
+        reviews = list(mongo.db.reviews.find(
+            {"company_id": ObjectId(company_id)}))
+        company_score = avrage_score(reviews, "score")
+        for review in reviews:
+            review["username"] = ""
+            for key, value in review.items():
+                if key == "user_id":
+                    user = mongo.db.users.find_one(
+                        {"_id": ObjectId(value)})
+                    if user:
+                        user_name = user = mongo.db.users.find_one(
+                            {"_id": ObjectId(value)})["username"]
+                        review["username"] = user_name
+                    else:
+                        review["username"] = "User"
+
+        flash("Review Added successfully.", "category4")
+        return render_template("reviews_results.html", company=company,
+                               reviews=reviews,
+                               company_score=company_score)
 
     return render_template("add_review.html", company=company)
 
@@ -245,8 +264,32 @@ def edit_review(review_id):
             }
         mongo.db.reviews.update_many(
             {"_id": ObjectId(review_id)}, tobe_updated)
-        flash("Review updated successfully.", "category2")
-        return render_template("messages.html")
+
+        # redirect to reviews_results
+        company_id = mongo.db.reviews.find_one(
+            {"_id": ObjectId(review_id)})["company_id"]
+        company = mongo.db.companies.find_one({"_id": company_id})
+        reviews = list(mongo.db.reviews.find(
+            {"company_id": ObjectId(company_id)}))
+        company_score = avrage_score(reviews, "score")
+        for review in reviews:
+            review["username"] = ""
+            for key, value in review.items():
+                if key == "user_id":
+                    user = mongo.db.users.find_one(
+                        {"_id": ObjectId(value)})
+                    if user:
+                        user_name = user = mongo.db.users.find_one(
+                            {"_id": ObjectId(value)})["username"]
+                        review["username"] = user_name
+                    else:
+                        review["username"] = "User"
+
+        flash("Review updated successfully.", "category4")
+        return render_template("reviews_results.html", company=company,
+                               reviews=reviews,
+                               company_score=company_score)
+
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     return render_template("edit_review.html", review=review)
 

@@ -13,13 +13,13 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 24px;
 }
 
 p {
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 20px;
     font-family: 'Karla', sans-serif;
     overflow-wrap: break-word;
 }
@@ -298,7 +298,7 @@ nav ul li:hover {
 }
 
 
-/* review-serch */
+/* reviews-results and companies_results */
 
 .review-search-heading {
     font-size: 24px;
@@ -316,40 +316,24 @@ nav ul li:hover {
     color: rgb(36, 117, 238);
 }
 
-.search-comapany-container {
-    position: relative;
-}
-
-.search-company-results p {
-    width: 90%;
-}
-
 .search-company-results span {
     color: rgba(228, 76, 6, 0.8);
     font-weight: 600;
     margin-left: 10px;
 }
 
-.description-text {
-    color: rgba(228, 76, 6, 0.8);
-    overflow-wrap: break-word;
-}
+/* Hyperlink styled as a button used in many sections of the website. */
 
-
-#add-review-button {
+.multifunctional-btn {
     width: 80%;
     padding: 0;
     margin-left: 10%;
     margin-bottom: 20px;
 }
 
-.add-review-btn p {
-    display: none;
-    text-decoration: underline;
-}
 
-.add-review-btn i {
-    display: none;
+.multifunctional-btn i {
+    margin-left: 5px;
 }
 
 .no-reviews-heading {
@@ -724,24 +708,20 @@ nav ul li:hover {
         height: 0;
     }
 
-    /* search-company-results */
 
     .search-company-results p {
         margin-top: 8px;
         margin-bottom: 5px;
+    
     }
 
-    .search-comapany-container {
-        position: relative;
-        height: 150px;
-    }
     
-    
-    #add-review-button {
-        position: relative;
-        bottom: 60px;
-        left: 55%;
-        width: 30%;
+    /* Hyperlink styled as a button used in many sections of the website. */
+
+   .multifunctional-btn   {
+        width: 36%;
+        margin-left:55%;
+        margin-top: 10px;
     }
 
     /* hottest-section */
@@ -768,8 +748,10 @@ nav ul li:hover {
 
     /* footer */
     .footer-links  {
-        margin-left: 80px;
+        margin-left: 60px;
     }
+
+   
 
 }
 

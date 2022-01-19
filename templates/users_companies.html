@@ -4,9 +4,8 @@
 
 {% if companies|length > 0 %}
 <div id="review-search">
-    <h2 class="black-text text-darken-4 center-align review-search-heading">Results for <span class="found-name">
-            {{ query }}
-        </span></h2>
+    <h1 class="black-text text-darken-4 center-align review-search-heading"> 
+        User Companies Profile</h1> 
     {% for company in  companies %}
     <div class="row">
         <div class="col m10 s10 offset-m1 offset-s1 grey lighten-5 search-comapany-container card-panel">
@@ -16,12 +15,9 @@
                 <p>Number of Reviews:<span>{{ company.reviews_count }}</span></p>
                 <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
             </div>
-            <div class="add-review-btn">
-                <button id="add-review-button" class="btn light-blue white-text accent-4" type="button">
-                    <a class="white-text" href="{{ url_for('delete_company', company_id=company._id) }}">Delete Company<i
-                            class="fas fa-sign-in-alt"></i></a>
-                </button>
-            </div>
+            <a  class="btn light-blue accent-4 white-text multifunctional-btn" onClick="alert('To Delete  company please confirm by clicking  OK')"
+            href="{{ url_for('delete_company', company_id=company._id) }}">Delete Company</i>
+            </a>
         </div>
     </div>
     {% endfor %}
