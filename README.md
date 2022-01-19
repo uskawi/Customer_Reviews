@@ -114,7 +114,7 @@ Mongodb was used to create database for the website.
 
 ## Testing
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+The W3C Markup Validator and W3C CSS Validator LightHouse and JSHint services were used to validate every page of the project to ensure there were no errors in the project.
 
 ### HTML Testing
 HTML  Tested by using **text Input**. The source code was copied from The browser developer tools and pasted in Html W3C HTML Validator due to a problem with some pages like the profile page could not be checked by URL.
@@ -128,18 +128,18 @@ As the website contains 13 pages, Not all results are added to README.
 -   [W3C CSS Validator ](static/README/css_val.jpg)
 
 ### JAVA SCRIPT Testing
-
+-   [JShint](static/README/jshint.jpg) 
 
 ### LightHouse TESTING
 Lighthouse testing was done on chrome developer tools because some pages could not be tested using the browser's extension. All the pages returned similar results as the results on the links above.
 
--   [W3C Markup Validator Home Page](static/README/home_LH.jpg) 
--   [W3C Markup Validator For_Businesses Page](static/README/for_businesses_LH.jpg) 
--   [W3C Markup Validator Edit_review Page](static/README/edit_review_LH.jpg) - 
--   [W3C Markup Validator Profile Page](static/README/profile_LH.jpg) 
--   [W3C Markup Validator Edit_password Page](static/README/password_LH.jpg) 
--   [W3C Markup Validator Reviews_results Page](static/README/reviews_results_LH.jpg) 
--   [W3C Markup Validator User_company Page](static/README/user_company_LH.jpg) 
+-   [Lighthouse Home Page](static/README/home_LH.jpg) 
+-   [Lighthouse Validator For_Businesses Page](static/README/for_businesses_LH.jpg) 
+-   [Lighthouse Validator Edit_review Page](static/README/edit_review_LH.jpg) - 
+-   [Lighthouse Validator Profile Page](static/README/profile_LH.jpg) 
+-   [Lighthouse Validator Edit_password Page](static/README/password_LH.jpg) 
+-   [Lighthouse Validator Reviews_results Page](static/README/reviews_results_LH.jpg) 
+-   [Lighthouse Validator User_company Page](static/README/user_company_LH.jpg) 
 
 ### Testing User Stories from User Experience (UX) Section
 -   #### First Time Visitor Goals

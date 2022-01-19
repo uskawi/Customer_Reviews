@@ -12,6 +12,10 @@ $(document).ready(function () {
 
 $("#copyright").text(new Date().getFullYear());
 
+/* 
+ Add hover effect to search bar
+*/
+
 $("#company-name").mouseenter(function() {
     $("#company-name").css("boxShadow", "5px 10px #000");
     $("#company-name").css("background-color", "rgb(175, 248, 243)");
