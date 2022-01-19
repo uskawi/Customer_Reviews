@@ -230,6 +230,10 @@ Lighthouse testing was done on chrome developer tools because some pages could n
 ### Known Bugs
 - When a user submits a form and clicks on the return button on the browser, he is taken to the previews page. However, if he clicks again on the button to return to the page where he submitted the form, he is asked by the browser to submit the form again. Once he clicks an OK button on the alert, the form is submitted for the second time, causing the same data to be added twice to the database. Some form does not allow users to submit data already existing in the database, like the registration form or Add_company form but Add_review or Edit_review forms does.
 
+- The Review_count field in the Company collection in each document shows the number of reviews for each company and its updated base on CRUD operation. Once a review is added, the Review_coutn increase by 1; once it is deleted, it decreases by 1.
+Once a review is deleted or added from the database, not the app, the review shows a wrong number of reviews.
+
+
 ## Deployment
 ### Heroku
 

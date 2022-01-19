@@ -28,7 +28,7 @@ def home():
     """ home page """
     # finding most reviewed companies
     hottest_companies = mongo.db.companies.find().sort(
-            "reviews_count", -1).limit(4)
+            "reviews_count", -1).limit(6)
     company_counter = 0
     return render_template("home.html",
                            hottest_companies=hottest_companies,
@@ -151,6 +151,9 @@ def reviews_results(company_id):
     company = mongo.db.companies.find_one({"_id": ObjectId(company_id)})
     reviews = list(mongo.db.reviews.find({"company_id": ObjectId(company_id)}))
     company_score = avrage_score(reviews, "score")
+    # Adding the username to reviews as "user" for
+    # all users that deleted their account, but reviews
+    #  they wrote still exist in the database.
     if reviews:
         for review in reviews:
             review["username"] = ""
@@ -177,6 +180,7 @@ def add_review(company_id):
     company = mongo.db.companies.find_one(
             {"_id": ObjectId(company_id)})
     if request.method == "POST":
+        # creating reviews_count varibale
         reviews_count = company["reviews_count"]
         company_id = company["_id"]
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
@@ -188,7 +192,7 @@ def add_review(company_id):
             "review_content": request.form.get("review-text"),
             "review_title": request.form.get("title"),
         }
-        # add reviews counter to reviewed company
+        # add reviews_count to the reviewed company
         new_review_count = {
                 "$set": {
                     "reviews_count": reviews_count + 1
@@ -197,7 +201,7 @@ def add_review(company_id):
         mongo.db.reviews.insert_one(added_review)
         mongo.db.companies.update_one(
             {"_id": company_id}, new_review_count)
-
+        # redirecting the page to reviews_results
         reviews = list(mongo.db.reviews.find(
             {"company_id": ObjectId(company_id)}))
         company_score = avrage_score(reviews, "score")
@@ -265,7 +269,7 @@ def edit_review(review_id):
         mongo.db.reviews.update_many(
             {"_id": ObjectId(review_id)}, tobe_updated)
 
-        # redirect to reviews_results
+        # redirecting the page to reviews_results
         company_id = mongo.db.reviews.find_one(
             {"_id": ObjectId(review_id)})["company_id"]
         company = mongo.db.companies.find_one({"_id": company_id})
@@ -327,7 +331,7 @@ def delete_company(company_id):
 def delete_user(user_id):
     """ Edit review page """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
-    flash("Account Deleted Successfuly", "category3")
+    flash("Account Deleted Successfully.", "category3")
     session.pop("user")
     return redirect(url_for("home"))
 
@@ -387,7 +391,7 @@ def edit_user(user_id):
             flash("Email updated successfully. ", "category1")
             return render_template("profile.html", user=new_user)
         else:
-            flash("Sorry but we could't update your details", "category1")
+            flash("Sorry, but we could not update your details.", "category1")
             return redirect(url_for("edit_user",
                             user=user, user_id=user["_id"]))
 
@@ -414,11 +418,11 @@ def edit_password(user_id):
                 {"_id": ObjectId(user_id)}, update_password)
             new_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
             flash(
-                "User password updated successfully.", "category1")
+                "Password updated successfully.", "category1")
             return render_template("profile.html", user=new_user)
         else:
             flash(
-                "We couldn't updated your password.", "category1")
+                "We could not update your password..", "category1")
             return redirect(url_for("edit_password",
                             user=user, user_id=user["_id"]))
     return render_template("edit_password.html", user=user)
@@ -455,4 +459,4 @@ def avrage_score(arr, ind):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
