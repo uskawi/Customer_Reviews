@@ -6,14 +6,21 @@ CustomerReviews is a website hosting reviews to help consumers shop with confide
 <br>
 <br>
 
-<h2 align="center"><img src="static/images/readmy-images/home.jpg"></h2>
+##  Home Page
 <br>
 <br>
-<h2 align="center"><img src="static/images/readmy-images/business.jpg"></h2>
+<h2 align="center"><img src="static/README/home.jpg"></h2>
+<br>
+<br>
+
+##  For Businesses Page
+<br>
+<br>
+<h2 align="center"><img src="static/README/business.jpg"></h2>
 
 ## Database 
 Mongodb was used to create database for the website.
-<h4 align="center"><img src="static/images/readmy-images/mongo_data.jpg"></h4>
+<h4 align="center"><img src="static/README/mongo_data.jpg"></h4>
 
 ## User Experience (UX)
 
@@ -54,11 +61,15 @@ Mongodb was used to create database for the website.
         -   The Banner images  serves as a user's first glimpse of the website cause of its prominent placement towards the top of a webpage and extends to full-width.
 *   ### Wireframes
 
-    <!-- -   Home Page Wireframe - [View](https://github.com/)
+    -   Home Page Wireframe Mobile and Desktop. - [View](static/README/mobile_wirframe.png)
 
-    -   Mobile Wireframe - [View](https://github.com/)
+    -  Profile - [View](static/README/profile.png)
 
-    -   Contact Us Page Wireframe - [View](https://github.com/) -->
+    -   For Businesses page - [View](static/README/add_business.png)
+
+    #### Comparison between wireframes and final design.
+
+     Initial Wireframes are almost entirely different from the website's final design as works on the project advanced, new ideas and concepts were implemented.
 
 ## Features
 
@@ -105,8 +116,30 @@ Mongodb was used to create database for the website.
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
-<!-- -   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/) -->
+### HTML Testing
+HTML  Tested by using **text Input**. The source code was copied from The browser developer tools and pasted in Html W3C HTML Validator due to a problem with some pages like the profile page could not be checked by URL.
+As the website contains 13 pages, Not all results are added to README.
+
+-   [W3C Markup Validator Home Page](static/README/home_val.jpg) 
+-   [W3C Markup Validator For_Businesses Page](static/README/business_valid.jpg) 
+-   [W3C Markup Validator Profile Page](static/README/profile_val.jpg) 
+
+### CSS Testing
+-   [W3C CSS Validator ](static/README/css_val.jpg)
+
+### JAVA SCRIPT Testing
+
+
+### LightHouse TESTING
+Lighthouse testing was done on chrome developer tools because some pages could not be tested using the browser's extension. All the pages returned similar results as the results on the links above.
+
+-   [W3C Markup Validator Home Page](static/README/home_LH.jpg) 
+-   [W3C Markup Validator For_Businesses Page](static/README/for_businesses_LH.jpg) 
+-   [W3C Markup Validator Edit_review Page](static/README/edit_review_LH.jpg) - 
+-   [W3C Markup Validator Profile Page](static/README/profile_LH.jpg) 
+-   [W3C Markup Validator Edit_password Page](static/README/password_LH.jpg) 
+-   [W3C Markup Validator Reviews_results Page](static/README/reviews_results_LH.jpg) 
+-   [W3C Markup Validator User_company Page](static/README/user_company_LH.jpg) 
 
 ### Testing User Stories from User Experience (UX) Section
 -   #### First Time Visitor Goals

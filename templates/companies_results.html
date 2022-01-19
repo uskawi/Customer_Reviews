@@ -38,7 +38,7 @@
                 <p>Number of Reviews:<span>{{ company.reviews_count }}</span></p>
                 <p>Description:<span class="upper-case"> {{ company.description }} </span></p>
             </div>
-                <a  class="btn light-blue accent-4 white-text multifunctional-btn" 
+                <a  class="btn white-text multifunctional-btn" 
                     href="{{ url_for('reviews_results', company_id=company._id) }}">See Reviews
                     </a>
         </div>
